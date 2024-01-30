@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>id</title>
+    <title></title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../assets/css/bootstrap.css">
 <link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
@@ -19,14 +19,14 @@
 
       <!-- Name Title -->
 
-      <h1>id</h1>
+      <h1>(unnamed)</h1>
 
       <!-- Type and Stereotype -->
 
       <section style="margin-top: .5em;">
         <span class="alert alert-info">
-          <span class="node-icon staruml-icon icon-ERDColumn"></span>
-          ERDColumn
+          <span class="node-icon staruml-icon icon-ERDRelationshipEnd"></span>
+          ERDRelationshipEnd
         </span>
         
       </section>
@@ -44,10 +44,13 @@
           <span class="label label-info"><a href='acdcf3e139dc911c81b01d8dd9cf41ff.html'><span class='node-icon staruml-icon icon-ERDDataModel'></span>Data Model1</a></span>
         
           <span>::</span>
-          <span class="label label-info"><a href='b92adbad036382f82186de9a32052945.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>orders</a></span>
+          <span class="label label-info"><a href='d8ffc8b33a47f62eada09413664c60b3.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>materials</a></span>
         
           <span>::</span>
-          <span class="label label-info"><a href='fa04a92b213f72be31ad5d27de302e60.html'><span class='node-icon staruml-icon icon-ERDColumn'></span>id</a></span>
+          <span class="label label-info"><a href='bedc941b1dee6e97770642afac18c981.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(materials—product_has_materials)</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='9f6baa13fde7b7de8b1c05f6c161e364.html'><span class='node-icon staruml-icon icon-ERDRelationshipEnd'></span>(ERDRelationshipEnd)</a></span>
         
       </section>
 
@@ -216,7 +219,7 @@
     
     <tr>
         <td>name</td>
-        <td>id</td>
+        <td></td>
     </tr>
     
     
@@ -230,8 +233,8 @@
     
     
     <tr>
-        <td>type</td>
-        <td>VARCHAR</td>
+        <td>reference</td>
+        <td><a href='d8ffc8b33a47f62eada09413664c60b3.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>materials</a></td>
     </tr>
     
     
@@ -239,53 +242,8 @@
     
     
     <tr>
-        <td>length</td>
-        <td>36</td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>primaryKey</td>
-        <td><span class='label label-info'>true</span></td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>foreignKey</td>
-        <td><span class='label label-info'>false</span></td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>referenceTo</td>
-        <td><span class='label label-info'>null</span></td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>nullable</td>
-        <td><span class='label label-info'>false</span></td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>unique</td>
-        <td><span class='label label-info'>true</span></td>
+        <td>cardinality</td>
+        <td>1</td>
     </tr>
     
     
