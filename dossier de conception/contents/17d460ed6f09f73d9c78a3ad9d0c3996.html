@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>size</title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../assets/css/bootstrap.css">
 <link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
@@ -19,14 +19,14 @@
 
       <!-- Name Title -->
 
-      <h1>Customer</h1>
+      <h1>size</h1>
 
       <!-- Type and Stereotype -->
 
       <section style="margin-top: .5em;">
         <span class="alert alert-info">
-          <span class="node-icon staruml-icon icon-UMLActor"></span>
-          UMLActor
+          <span class="node-icon staruml-icon icon-ERDColumn"></span>
+          ERDColumn
         </span>
         
       </section>
@@ -41,10 +41,13 @@
           <span class="label label-info"><a href='cf9c8b720f3815adeccaf3ef6e48c6c4.html'><span class='node-icon staruml-icon icon-Project'></span>CraftedBy</a></span>
         
           <span>::</span>
-          <span class="label label-info"><a href='0d35bb81a3f435ab17ad2d57d73f6d42.html'><span class='node-icon staruml-icon icon-UMLModel'></span>Use Case</a></span>
+          <span class="label label-info"><a href='acdcf3e139dc911c81b01d8dd9cf41ff.html'><span class='node-icon staruml-icon icon-ERDDataModel'></span>Data Model1</a></span>
         
           <span>::</span>
-          <span class="label label-info"><a href='840e3d6904f5b5ce87efc37938a661e1.html'><span class='node-icon staruml-icon icon-UMLActor'></span>Customer</a></span>
+          <span class="label label-info"><a href='d62e2d228ae89beb32abb96c7c2ae500.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>products</a></span>
+        
+          <span>::</span>
+          <span class="label label-info"><a href='17d460ed6f09f73d9c78a3ad9d0c3996.html'><span class='node-icon staruml-icon icon-ERDColumn'></span>size</a></span>
         
       </section>
 
@@ -80,26 +83,6 @@
       <!-- Classifier -->
 
       
-        
-        
-
-
-        
-        
-
-
-        
-        
-
-
-        
-        
-
-
-        
-        
-
-      
 
       <!-- Interface -->
 
@@ -114,29 +97,6 @@
       
 
       <!-- Actor -->
-
-      
-        
-        
-<section class="element-list">
-    <h3>Use Cases</h3>
-    <ul class="nav nav-list">
-        
-        <li><a href='451ed7f9d15b56d65677a94bba74e23a.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>Register</a></li>
-        
-        <li><a href='bcad3dc139eb7e6195e79dbe2f7c0d38.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>Login</a></li>
-        
-        <li><a href='451ed7f9d15b56d65677a94bba74e23a.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>Register</a></li>
-        
-        <li><a href='4c13e5f15407584c3c0a2a24ea706cb2.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>view products</a></li>
-        
-        <li><a href='0d0f5f2fcbb6056b2d6052eba99be68c.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>add products to cart</a></li>
-        
-        <li><a href='0c4781763d492973767259ab9faa8d98.html'><span class='node-icon staruml-icon icon-UMLUseCase'></span>Validate cart</a></li>
-        
-    </ul>
-</section>
-
 
       
 
@@ -256,7 +216,7 @@
     
     <tr>
         <td>name</td>
-        <td>Customer</td>
+        <td>size</td>
     </tr>
     
     
@@ -270,7 +230,43 @@
     
     
     <tr>
-        <td>stereotype</td>
+        <td>type</td>
+        <td>INTERGER</td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>length</td>
+        <td><span class='label label-info'>0</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>primaryKey</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>foreignKey</td>
+        <td><span class='label label-info'>false</span></td>
+    </tr>
+    
+    
+    
+    
+    
+    <tr>
+        <td>referenceTo</td>
         <td><span class='label label-info'>null</span></td>
     </tr>
     
@@ -279,26 +275,7 @@
     
     
     <tr>
-        <td>visibility</td>
-        <td>public</td>
-    </tr>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <tr>
-        <td>isAbstract</td>
+        <td>nullable</td>
         <td><span class='label label-info'>false</span></td>
     </tr>
     
@@ -307,16 +284,7 @@
     
     
     <tr>
-        <td>isFinalSpecialization</td>
-        <td><span class='label label-info'>false</span></td>
-    </tr>
-    
-    
-    
-    
-    
-    <tr>
-        <td>isLeaf</td>
+        <td>unique</td>
         <td><span class='label label-info'>false</span></td>
     </tr>
     
@@ -333,61 +301,17 @@
       <!-- Constraints, Dependencies, Dependants -->
 
       
-        
-        
-
-
-        
-        
-
-
-        
-        
-
-      
 
       <!-- Relationships -->
 
       
       
-<section class="element-list">
-    <h3>Relationships</h3>
-    <ul class="nav nav-list">
-        
-        <li><a href='3ff76aae2628a8481c0174284d16419f.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Register—Customer)</a></li>
-        
-        <li><a href='b66e346f8c7cb5ac3d155e1e0640479d.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Login—Customer)</a></li>
-        
-        <li><a href='4f136233d2bbc7ae458bb1f7768a6f05.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Register—Customer)</a></li>
-        
-        <li><a href='32b61cae07f1a6164da476b7ec53ec09.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—view products)</a></li>
-        
-        <li><a href='2b3e5608166fdd501e36f6a6de46643c.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—add products to cart)</a></li>
-        
-        <li><a href='4e9c766cf5e5f981c0f5aeb9fd0af7f6.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—Validate cart)</a></li>
-        
-    </ul>
-</section>
-
 
 
       <!-- Owned Elements -->
 
       
       
-<section class="element-list">
-    <h3>Owned Elements</h3>
-    <ul class="nav nav-list">
-        
-        <li><a href='32b61cae07f1a6164da476b7ec53ec09.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—view products)</a></li>
-        
-        <li><a href='2b3e5608166fdd501e36f6a6de46643c.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—add products to cart)</a></li>
-        
-        <li><a href='4e9c766cf5e5f981c0f5aeb9fd0af7f6.html'><span class='node-icon staruml-icon icon-UMLAssociation'></span>(Customer—Validate cart)</a></li>
-        
-    </ul>
-</section>
-
 
 
       <!-- Image Map Resizer (https://github.com/davidjbradshaw/image-map-resizer) -->
