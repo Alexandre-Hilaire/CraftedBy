@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('oder_product', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id');
             $table->foreignUuid('product_id');
             $table->foreignUuid('order_id');
             $table->string('product_name');
             $table->float('product_unit_price');
-            $table->int('quantity');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
