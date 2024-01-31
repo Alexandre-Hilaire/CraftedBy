@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('crafters', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id');
             $table->timestamps();
             $table->foreignUuid('user_id')->constrained();
             $table->text('information');

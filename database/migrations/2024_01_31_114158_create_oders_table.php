@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('oders', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id');
             $table->timestamps();
             $table->foreignUuid('user_id')->constrained();
-            $table->int('oder_status');
+            $table->integer('oder_status');
             $table->float('order_price');
             $table->date('order_date');
             $table->string('delivery_adress');
