@@ -197,7 +197,7 @@
           
           <tr>
             <td><a href="cbb0cb4415ccbd60f312293dc743163f.html">id</a></td>
-            <td>INTEGER</td>
+            <td>VARCHAR(255)</td>
             <td><span class='label label-info'>true</span></td>
             <td><span class='label label-info'>false</span></td>
             <td>
@@ -300,19 +300,6 @@
           </tr>
           
           <tr>
-            <td><a href="17d460ed6f09f73d9c78a3ad9d0c3996.html">size</a></td>
-            <td>INTERGER</td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>false</span></td>
-            <td>
-              
-              <span class='label label-info'>null</span>
-            </td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>false</span></td>
-          </tr>
-          
-          <tr>
             <td><a href="c5725149a3e2e019649ae498238f69d1.html">customizable</a></td>
             <td>INTEGER</td>
             <td><span class='label label-info'>false</span></td>
@@ -358,6 +345,14 @@
           
           
           <tr>
+            <td><a href='b7d48759209e8e7ca743f92ebc87c228.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>users</a></td>
+            <td>1</td>
+            <td></td>
+            <td><a href='767c5d6f77df367cde8a183a1ab9c313.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(users—products)</a></td>
+          </tr>
+          
+          
+          <tr>
             <td><a href='3d699e0c8f96f7f0ae53bfbca9c7908c.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>order_has_products</a></td>
             <td>0..*</td>
             <td></td>
@@ -382,6 +377,30 @@
           
           
           <tr>
+            <td><a href='3d699e0c8f96f7f0ae53bfbca9c7908c.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>order_has_products</a></td>
+            <td>0..*</td>
+            <td></td>
+            <td><a href='36a9ca97b1e170465bddce46205321e7.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></td>
+          </tr>
+          
+          
+          <tr>
+            <td><a href='3921f152154a4ea743d94b62bd9ee97f.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_categories</a></td>
+            <td>0..*</td>
+            <td></td>
+            <td><a href='43ce089a2deb4407eefc77e7fb176bc9.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></td>
+          </tr>
+          
+          
+          <tr>
+            <td><a href='c98da5c144ceaea4e23831299e776925.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_has_materials</a></td>
+            <td>0..*</td>
+            <td></td>
+            <td><a href='ce2ad45e200740146f053e4e891af15d.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></td>
+          </tr>
+          
+          
+          <tr>
             <td><a href='3921f152154a4ea743d94b62bd9ee97f.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_categories</a></td>
             <td>0..*</td>
             <td></td>
@@ -394,38 +413,6 @@
             <td>1</td>
             <td></td>
             <td><a href='746f63ca8efef9c9bdb7f4695fcc08bd.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(models—products)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='b7d48759209e8e7ca743f92ebc87c228.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>users</a></td>
-            <td>1</td>
-            <td></td>
-            <td><a href='9b8afbda0a4042950618538d80f52857.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(users—products)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='3921f152154a4ea743d94b62bd9ee97f.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_categories</a></td>
-            <td>1</td>
-            <td></td>
-            <td><a href='7daeceb34978dfc3c60e75b438227754.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='3921f152154a4ea743d94b62bd9ee97f.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_categories</a></td>
-            <td>0..*</td>
-            <td></td>
-            <td><a href='dae8c5f7aad576c5636ce79c63fcabe3.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='c98da5c144ceaea4e23831299e776925.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>product_has_materials</a></td>
-            <td>0..*</td>
-            <td></td>
-            <td><a href='3071acb655cef8ae8bc3b16a96e0faa8.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></td>
           </tr>
           
         </table>                
@@ -492,23 +479,23 @@
     <h3>Relationships</h3>
     <ul class="nav nav-list">
         
+        <li><a href='767c5d6f77df367cde8a183a1ab9c313.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(users—products)</a></li>
+        
         <li><a href='570ebfd381573823a35a53c5a3179acb.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></li>
         
         <li><a href='6ee6467d6529f53d1bf8c316dfb180f4.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
         
         <li><a href='138ec4fd50293f0782766f7d6db61806.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
         
+        <li><a href='36a9ca97b1e170465bddce46205321e7.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></li>
+        
+        <li><a href='43ce089a2deb4407eefc77e7fb176bc9.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
+        
+        <li><a href='ce2ad45e200740146f053e4e891af15d.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
+        
         <li><a href='396a9684f8524d91599092ebdd66e7ed.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(product_categories—products)</a></li>
         
         <li><a href='746f63ca8efef9c9bdb7f4695fcc08bd.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(models—products)</a></li>
-        
-        <li><a href='9b8afbda0a4042950618538d80f52857.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(users—products)</a></li>
-        
-        <li><a href='7daeceb34978dfc3c60e75b438227754.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
-        
-        <li><a href='dae8c5f7aad576c5636ce79c63fcabe3.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
-        
-        <li><a href='3071acb655cef8ae8bc3b16a96e0faa8.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
         
     </ul>
 </section>
@@ -529,11 +516,11 @@
         
         <li><a href='138ec4fd50293f0782766f7d6db61806.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
         
-        <li><a href='7daeceb34978dfc3c60e75b438227754.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
+        <li><a href='36a9ca97b1e170465bddce46205321e7.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></li>
         
-        <li><a href='dae8c5f7aad576c5636ce79c63fcabe3.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
+        <li><a href='43ce089a2deb4407eefc77e7fb176bc9.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_categories)</a></li>
         
-        <li><a href='3071acb655cef8ae8bc3b16a96e0faa8.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
+        <li><a href='ce2ad45e200740146f053e4e891af15d.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—product_has_materials)</a></li>
         
     </ul>
 </section>

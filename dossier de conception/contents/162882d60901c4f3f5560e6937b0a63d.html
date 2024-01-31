@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>order_has_products</title>
+    <title>images</title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro:300,400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="../assets/css/bootstrap.css">
 <link rel="stylesheet" href="../assets/css/jquery.bonsai.css">
@@ -19,7 +19,7 @@
 
       <!-- Name Title -->
 
-      <h1>order_has_products</h1>
+      <h1>images</h1>
 
       <!-- Type and Stereotype -->
 
@@ -44,7 +44,7 @@
           <span class="label label-info"><a href='acdcf3e139dc911c81b01d8dd9cf41ff.html'><span class='node-icon staruml-icon icon-ERDDataModel'></span>Data Model1</a></span>
         
           <span>::</span>
-          <span class="label label-info"><a href='3d699e0c8f96f7f0ae53bfbca9c7908c.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>order_has_products</a></span>
+          <span class="label label-info"><a href='162882d60901c4f3f5560e6937b0a63d.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>images</a></span>
         
       </section>
 
@@ -196,7 +196,7 @@
           </tr>
           
           <tr>
-            <td><a href="3b80d535cbd56ece638eb72804485215.html">id</a></td>
+            <td><a href="c640c9d817846ab12a2de21f996a620c.html">id</a></td>
             <td>VARCHAR(255)</td>
             <td><span class='label label-info'>true</span></td>
             <td><span class='label label-info'>false</span></td>
@@ -209,33 +209,7 @@
           </tr>
           
           <tr>
-            <td><a href="b33704d31cbab931f8c227d50d94debf.html">product_id</a></td>
-            <td>INTEGER</td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>true</span></td>
-            <td>
-              
-              <span class='label label-info'>null</span>
-            </td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>false</span></td>
-          </tr>
-          
-          <tr>
-            <td><a href="c02916c092a0095a37de35fb68c54aba.html">order_id</a></td>
-            <td>INTEGER</td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>true</span></td>
-            <td>
-              
-              <span class='label label-info'>null</span>
-            </td>
-            <td><span class='label label-info'>false</span></td>
-            <td><span class='label label-info'>false</span></td>
-          </tr>
-          
-          <tr>
-            <td><a href="f7dd250206bcd451ca9ccbb157e44174.html">product_name</a></td>
+            <td><a href="3cb8350fa39b6cd693cb5eba1f29d1d9.html">path</a></td>
             <td>VARCHAR(255)</td>
             <td><span class='label label-info'>false</span></td>
             <td><span class='label label-info'>false</span></td>
@@ -248,8 +222,8 @@
           </tr>
           
           <tr>
-            <td><a href="05cb01257d3130f166ee4a85b5cf7999.html">product_unit_price</a></td>
-            <td>FLOAT</td>
+            <td><a href="4832da803f748c7fb445ef0211bf5c3c.html">imagable_id</a></td>
+            <td>VARCHAR(255)</td>
             <td><span class='label label-info'>false</span></td>
             <td><span class='label label-info'>false</span></td>
             <td>
@@ -261,8 +235,8 @@
           </tr>
           
           <tr>
-            <td><a href="8118037cf63ec3f4a0a391e004f6d04f.html">quantity</a></td>
-            <td>INTEGER</td>
+            <td><a href="037f3daf99d70f3d7203be5280470810.html">imagable_type</a></td>
+            <td>VARCHAR(255)</td>
             <td><span class='label label-info'>false</span></td>
             <td><span class='label label-info'>false</span></td>
             <td>
@@ -289,38 +263,6 @@
             <th width="25%">Cardinality</th>
             <th width="25%">Reference Name</th>
             <th width="25%">Relationship</th>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='d62e2d228ae89beb32abb96c7c2ae500.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>products</a></td>
-            <td>0..*</td>
-            <td></td>
-            <td><a href='570ebfd381573823a35a53c5a3179acb.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='d62e2d228ae89beb32abb96c7c2ae500.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>products</a></td>
-            <td>1</td>
-            <td></td>
-            <td><a href='36a9ca97b1e170465bddce46205321e7.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='b92adbad036382f82186de9a32052945.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>orders</a></td>
-            <td>1</td>
-            <td></td>
-            <td><a href='1f81a9934e4a781baddfd4c23664d728.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(orders—order_has_products)</a></td>
-          </tr>
-          
-          
-          <tr>
-            <td><a href='b92adbad036382f82186de9a32052945.html'><span class='node-icon staruml-icon icon-ERDEntity'></span>orders</a></td>
-            <td>0..*</td>
-            <td></td>
-            <td><a href='7d0e7befad6948d8f29e3f793b1b6756.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(order_has_products—orders)</a></td>
           </tr>
           
         </table>                
@@ -354,7 +296,7 @@
     
     <tr>
         <td>name</td>
-        <td>order_has_products</td>
+        <td>images</td>
     </tr>
     
     
@@ -383,36 +325,12 @@
 
       
       
-<section class="element-list">
-    <h3>Relationships</h3>
-    <ul class="nav nav-list">
-        
-        <li><a href='570ebfd381573823a35a53c5a3179acb.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></li>
-        
-        <li><a href='36a9ca97b1e170465bddce46205321e7.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(products—order_has_products)</a></li>
-        
-        <li><a href='1f81a9934e4a781baddfd4c23664d728.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(orders—order_has_products)</a></li>
-        
-        <li><a href='7d0e7befad6948d8f29e3f793b1b6756.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(order_has_products—orders)</a></li>
-        
-    </ul>
-</section>
-
 
 
       <!-- Owned Elements -->
 
       
       
-<section class="element-list">
-    <h3>Owned Elements</h3>
-    <ul class="nav nav-list">
-        
-        <li><a href='7d0e7befad6948d8f29e3f793b1b6756.html'><span class='node-icon staruml-icon icon-ERDRelationship'></span>(order_has_products—orders)</a></li>
-        
-    </ul>
-</section>
-
 
 
       <!-- Image Map Resizer (https://github.com/davidjbradshaw/image-map-resizer) -->
