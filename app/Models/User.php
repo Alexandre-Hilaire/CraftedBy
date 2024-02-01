@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,4 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function crafter() : HasOne {
+        return $this->hasOne('crafter_id');
+    }
+    public function adress(): HasMany{
+        return $this->hasMany('adress_id');
+    }
+    public function products(): HasMany {
+        return $this->hasMany('product_id');
+    }
+    public function orders():HasMany {
+        return $this->hasMany('order_id');
+    }
 }
