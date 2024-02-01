@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('materials_product', function (Blueprint $table) {
             $table->uuid('id');
             $table->timestamps();
+            $table->string('material_name');
             $table->foreignUuid('product_id');
             $table->foreignUuid('material_id');
         });
