@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('oder_product', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->foreignUuid('product_id');
-            $table->foreignUuid('order_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('product_id')->constrained();
+            $table->foreignUuid('order_id')->constrained();
             $table->string('product_name');
             $table->float('product_unit_price');
             $table->integer('quantity');

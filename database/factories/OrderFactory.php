@@ -17,12 +17,11 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=>fake()->uuid(),
             'order_status'=>rand(0,7),
-            'order_price'=>fake()->random_float(),
+            'order_price'=>fake()->randomFloat(),
             'order_date'=>fake()-> dateTime(),
-            'delivery_adress'=> fake()->city(),
-            'facturation_adress'=>fake()->city(),
+            'delivery_adress'=> fake()->streetAddress(),
+            'facturation_adress'=>fake()->streetAddress(),
         ];
     }
 }

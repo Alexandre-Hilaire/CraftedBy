@@ -17,7 +17,6 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=>fake()->uuid(),
             'material_name'=>fake()->realText($maxnbChars=10),
         ];
     }

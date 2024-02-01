@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -13,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -54,8 +56,8 @@ class User extends Authenticatable
     public function crafter() : HasOne {
         return $this->hasOne('crafter_id');
     }
-    public function adress(): HasMany{
-        return $this->hasMany('adress_id');
+    public function address(): HasMany{
+        return $this->hasMany('address_id');
     }
     public function products(): HasMany {
         return $this->hasMany('product_id');

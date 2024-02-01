@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address', function (Blueprint $table) {
-            $table->uuid('id');
+        Schema::create('addresses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->timestamps();
             $table->foreignUuid('user_id')->constrained();
-            $table->string('adress_name');
-            $table->integer('adresse_type');
-            $table->string('adress_firstname');
-            $table->string('adress_lastname');
-            $table->string('first_adress');
-            $table->string('second_adress');
-            $table->integer('postal_code');
+            $table->string('address_name');
+            $table->integer('address_type');
+            $table->string('address_firstname');
+            $table->string('address_lastname');
+            $table->string('first_address');
+            $table->string('second_address');
+            $table->string('postal_code');
         });
     }
 

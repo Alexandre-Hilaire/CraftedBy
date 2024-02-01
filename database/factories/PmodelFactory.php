@@ -17,7 +17,6 @@ class PmodelFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=>fake()->uuid(),
             'model_name'=>fake()->realText($maxNbChars=10),
         ];
     }

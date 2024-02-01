@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Pmodel;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +20,16 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=>fake()->uuid(),
-            'unit_price'=> fake()-> random_float(),
+            'unit_price'=>fake()->randomFloat($nbMaxDecimals = 3, $min=0, $max=100),
             'name'=>fake()->realText($maxNbChars = 50),
-            'description'=>fake()->realText($maxNbChars = 500),
+            'description'=>fake()->realText($maxNbChars = 255),
             'status'=>rand(0,2),
             'color'=>fake()->colorName(),
-            'customizable'=>random_int(0,1),
-            'is_active'=>fake()->boolean()
+            'customizable'=>rand(0,1),
+            'is_active'=>fake()->boolean(),
+            'pmodel_id'=>Pmodel::factory(),
+            'user_id'=>User::factory(),
+            'category_id'=>Category::factory(),
         ];
     }
 }

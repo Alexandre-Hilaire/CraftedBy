@@ -17,7 +17,6 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=>fake()->uuid(),
             'path'=>fake()->image(),
         ];
     }

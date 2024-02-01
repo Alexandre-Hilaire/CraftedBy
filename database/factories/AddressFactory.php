@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class AdressFactory extends Factory
+class AddressFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,14 +18,14 @@ class AdressFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->unique()->uuid(),
-            'adress_name' => "adresse_test",
-            'adress_type' => rand(0,1),
-            'adress_firstname' => fake()->firstName(),
-            'adress_lastname' => fake()->lastName(),
-            'first_adress' => fake() -> streetName(),
-            'second_adress' => fake() -> city(),
+            'address_name' => "adresse_test",
+            'address_type' => rand(0,1),
+            'address_firstname' => fake()->firstName(),
+            'address_lastname' => fake()->lastName(),
+            'first_address' => fake() -> streetName(),
+            'second_address' => fake() -> city(),
             'postal_code' => fake()-> postcode(),
+            'user_id'=> User::factory(),
         ];
     }
 }

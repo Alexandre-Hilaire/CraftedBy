@@ -17,10 +17,9 @@ class CrafterFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' =>fake()->uuid(),
-            'information' => fake() -> realText($maxNbChars = 300),
-            'story' => fake() -> realText($maxNbChars = 300),
-            'crafting_process' => fake() -> realText($maxNbChars = 300),
+            'information' => fake() -> realText($maxNbChars = 255),
+            'story' => fake() -> realText($maxNbChars = 255),
+            'crafting_process' => fake() -> realText($maxNbChars = 255),
             'location' => fake() -> city(),
             'material_preference' => fake() -> realText($maxNbChars = 100),
         ];

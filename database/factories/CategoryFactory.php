@@ -17,7 +17,6 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->uuid(),
             'category_name' => fake()->realText($maxNbChars =10),
         ];
     }
