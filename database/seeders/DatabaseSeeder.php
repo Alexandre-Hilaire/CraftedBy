@@ -21,15 +21,25 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            // ProductSeeder::class,
+
+            // * fonctionne
             PmodelSeeder::class,
-            // CategorySeeder::class,
-            // MaterialSeeder::class,
+            // * fonctionne
+            CategorySeeder::class,
+            // * fonctionne
+            MaterialSeeder::class,
+            // ! ne fonctionne pas
+            ProductSeeder::class,
+            // ! ne fonctionne pas
             AddressSeeder::class,
+            // ! ne fonctionne pas
             UserSeeder::class,
+            // ! ne fonctionne pas
             ImageSeeder::class,
+            // ! ne fonctionne pas
             CrafterSeeder::class,
-            // OrderSeeder::class,
+            // ! ne fonctionne pas
+            OrderSeeder::class,
         ]);
     }
 }

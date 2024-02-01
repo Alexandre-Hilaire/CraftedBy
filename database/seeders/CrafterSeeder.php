@@ -15,7 +15,6 @@ class CrafterSeeder extends Seeder
     public function run(): void
     {
         Crafter::factory(10)
-        ->has(Image::factory(5))
         ->create();
     }
 }

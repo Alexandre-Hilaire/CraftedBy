@@ -17,11 +17,12 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(20)
-        ->has(Category::factory(1))
-        ->has(Material::factory(1))
-        ->has(Pmodel::factory(1))
-        ->has(Image::factory(5))
-        ->create();
+        Product::factory(20)->create()->each(function ($product){
+            $product->category()->associate(Category::factory()->create());
+            $product->material()->associate(Material::factory()->create());
+            $product->pmodel()->associate(Pmodel::factory()->create());
+            $product->save();
+            $product->images()->saveMany(Image::factory(5)->create());
+        });
     }
 }
