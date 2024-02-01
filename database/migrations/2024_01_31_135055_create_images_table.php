@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id');
             $table->timestamps();
             $table->string('path');
-            $table->morphs('imageable_id');
-            $table->morphs('imageable_type');
+            $table->morphs('imagable_id');
+            $table->morphs('imagable_type');
         });
     }
 
