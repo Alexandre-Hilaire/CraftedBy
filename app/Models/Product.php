@@ -17,6 +17,14 @@ class Product extends Model
     // * guarded pour éviter de devoir citer tout les champs fillables on lui donne ceux qui ne le sont pas c'est à dire aucun ici
     protected $guarded = [];
 
+        /*
+     * Si je veux ne pas envoyer certaines choses via la requète api
+     */
+     protected $hidden = ['id','created_at','updated_at', 'pmodel_id', 'user_id','status','customizable','is_active'];
+
+    // * Sinon je peux juste dire ce que je veux transmettre
+    // ? protected $visible = ['name', 'unit_price', 'description','color'];
+
     public function users(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }

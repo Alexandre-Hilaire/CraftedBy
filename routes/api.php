@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Spatie\FlareClient\Api;
+use App\Http\Controllers\API\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/* 
+ * apiResssource créer automatiquement les routes :
+ * GET / POST : api/products
+ * GET / PUT / PATCH / DELETE api/products/{product}
+*/
+Route::apiResource('products',ProductController::class);
