@@ -16,7 +16,7 @@ class Pmodel extends Model
     protected $guarded = [];
 
 
-    public function products(): BelongsToMany {
-        return $this->belongsToMany('product_id');
+    public function products(): HasMany {
+        return $this->hasMany(Pmodel::class);
     }
 }

@@ -21,10 +21,9 @@ class ProductSeeder extends Seeder
             $category = Category::inRandomOrder()->first();
             $material = Material::inRandomOrder()->first();
             $pmodel = Pmodel::inRandomOrder()->first();
-            $product->category()->attach($category);
-            $product->material()->attach($material);
-            $product->pmodel()->attach($pmodel);
-            $product->save();
+            $product->categories()->attach($category);
+            $product->materials()->attach($material);
+            $product->pmodel()->associate($pmodel);
         });
     }
 }

@@ -29,13 +29,9 @@ class DatabaseSeeder extends Seeder
             // * fonctionne
             MaterialSeeder::class,
             // ! ne fonctionne pas
-            ProductSeeder::class,
-            // ! ne fonctionne pas
-            AddressSeeder::class,
-            // ! ne fonctionne pas
             UserSeeder::class,
             // ! ne fonctionne pas
-            ImageSeeder::class,
+            ProductSeeder::class,
             // ! ne fonctionne pas
             CrafterSeeder::class,
             // ! ne fonctionne pas

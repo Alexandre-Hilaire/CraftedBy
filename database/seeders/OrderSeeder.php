@@ -15,7 +15,15 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         Order::factory(10)
-        ->has(Product::factory(5))
-        ->create();
+        ->create()
+        ->each(function(Order $order){
+            $products = Product::inRandomOrder()->limit(rand(1,5))->get();
+            foreach($products as $product){
+                $quantity = rand(1,5);
+                $name = $product -> name;
+                $unit_price = $product -> unit_price;
+                $order -> products()->attach($product, ['product_name'=>$name, 'quantity'=>$quantity, 'product_unit_price'=>$unit_price]);       
+            }
+        });
     }
 }

@@ -15,6 +15,6 @@ class Category extends Model
     protected $guarded = [];
 
     public function products(): BelongsToMany{
-        return $this->belongsToMany(Product::class,'product_id');
+        return $this->belongsToMany(Product::class);
     }
 }

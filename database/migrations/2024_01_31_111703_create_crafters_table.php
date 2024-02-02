@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('information');
             $table->text('story');
             $table->text('crafting_process');
-            $table->text('localtion');
+            $table->text('location');
             $table->text('material_preference');
         });
     }

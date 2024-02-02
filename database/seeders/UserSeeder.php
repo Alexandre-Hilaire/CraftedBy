@@ -17,16 +17,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create()->each(function ($user){
-        
-            
-            $user->adresses()->saveMany(Address::factory(2)->create());
-
-            $user->crafter()->save(Crafter::factory()->create());
-
-            $user->products()->saveMany(Product::factory(2)->create());
-
-            $user->images()->saveMany(Image::factory(5)->create());
-        });
+        User::factory(10)->hasAddresses(2)->hasImages(5)->create();
     }
 }

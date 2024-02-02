@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,7 +17,9 @@ class CrafterFactory extends Factory
      */
     public function definition(): array
     {
+        $userWithoutCrafter = User::doesntHave('crafter')->inRandomOrder()->first()->id;
         return [
+            'user_id'=> $userWithoutCrafter,
             'information' => fake() -> realText($maxNbChars = 255),
             'story' => fake() -> realText($maxNbChars = 255),
             'crafting_process' => fake() -> realText($maxNbChars = 255),

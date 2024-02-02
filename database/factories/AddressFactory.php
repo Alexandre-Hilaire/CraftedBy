@@ -25,7 +25,6 @@ class AddressFactory extends Factory
             'first_address' => fake() -> streetName(),
             'second_address' => fake() -> city(),
             'postal_code' => fake()-> postcode(),
-            'user_id'=> User::factory(),
         ];
     }
 }

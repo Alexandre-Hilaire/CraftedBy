@@ -21,18 +21,18 @@ class Product extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public function oders(): BelongsToMany{
-        return $this->belongsToMany(Order::class,'oder_id');
+        return $this->belongsToMany(Order::class);
     }
-    public function categories(): HasOne{
-        return $this->hasOne(Category::class,'category_id');
+    public function categories(): BelongsToMany{
+        return $this->belongsToMany(Category::class);
     }
-    public function materials(): HasOne{
-        return $this->hasOne(Material::class,'material_id');
+    public function materials(): BelongsToMany{
+        return $this->belongsToMany(Material::class);
     }
-    public function pmodels(): HasOne{
-        return $this->hasOne(Pmodel::class,'pmodel_id');
+    public function pmodel(): BelongsTo{
+        return $this->belongsTo(Pmodel::class,'pmodel_id');
     }
     public function images(): MorphMany{
-        return $this->morphMany(Image::class, 'imagable_id');
+        return $this->morphMany(Image::class, 'imagable');
     }
 }

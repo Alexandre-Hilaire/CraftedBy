@@ -19,6 +19,8 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $pmodel = Pmodel::inRandomOrder()->first();
+        $user = User::inRandomOrder()->first();
         return [
             'unit_price'=>fake()->randomFloat($nbMaxDecimals = 3, $min=0, $max=100),
             'name'=>fake()->realText($maxNbChars = 50),
@@ -27,9 +29,8 @@ class ProductFactory extends Factory
             'color'=>fake()->colorName(),
             'customizable'=>rand(0,1),
             'is_active'=>fake()->boolean(),
-            'pmodel_id'=>Pmodel::factory(),
-            'user_id'=>User::factory(),
-            'category_id'=>Category::factory(),
+            'pmodel_id'=> $pmodel->id,
+            'user_id'=> $user->id,
         ];
     }
 }

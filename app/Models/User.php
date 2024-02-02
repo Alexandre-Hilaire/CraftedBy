@@ -54,18 +54,18 @@ class User extends Authenticatable
     ];
 
     public function crafter() : HasOne {
-        return $this->hasOne('crafter_id');
+        return $this->hasOne(Crafter::class);
     }
-    public function address(): HasMany{
-        return $this->hasMany('address_id');
+    public function addresses(): HasMany{
+        return $this->hasMany(Address::class);
     }
     public function products(): HasMany {
-        return $this->hasMany('product_id');
+        return $this->hasMany(Product::class);
     }
     public function orders():HasMany {
-        return $this->hasMany('order_id');
+        return $this->hasMany(Order::class);
     }
     public function images(): MorphMany{
-        return $this->morphMany(Image::class, 'imagable_id');
+        return $this->morphMany(Image::class, 'imagable');
     }
 }
