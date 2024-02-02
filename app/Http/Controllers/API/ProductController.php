@@ -18,22 +18,12 @@ class ProductController extends Controller
     {
         return Product::all();
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => ['required', 'string'],
-        //     'description' => ['required', 'string'],
-        //     'unit_price' => ['required', 'numeric'],
-        //     'status' => ['required', 'numeric'],
-        //     'color' => ['required', 'string'],
-        //     'costomizable' => ['required', 'numeric'],
-        //     'is_active' => ['required', 'boolean'],
-        // ]);
-
         $product = Product::create([
             'user_id' => $request->get('user_id'),
             'pmodel_id' => $request->get('pmodel_id'),
@@ -59,9 +49,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
     }
 
     /**
