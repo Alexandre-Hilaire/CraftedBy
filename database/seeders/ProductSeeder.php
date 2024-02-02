@@ -17,12 +17,14 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(20)->create()->each(function ($product){
-            $product->category()->associate(Category::factory()->create());
-            $product->material()->associate(Material::factory()->create());
-            $product->pmodel()->associate(Pmodel::factory()->create());
+        Product::factory(20)->hasImages(5)->create()->each(function ($product){
+            $category = Category::inRandomOrder()->first();
+            $material = Material::inRandomOrder()->first();
+            $pmodel = Pmodel::inRandomOrder()->first();
+            $product->category()->attach($category);
+            $product->material()->attach($material);
+            $product->pmodel()->attach($pmodel);
             $product->save();
-            $product->images()->saveMany(Image::factory(5)->create());
         });
     }
 }

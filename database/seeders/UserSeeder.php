@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
     {
         User::factory(10)->create()->each(function ($user){
         
+            
             $user->adresses()->saveMany(Address::factory(2)->create());
 
             $user->crafter()->save(Crafter::factory()->create());
