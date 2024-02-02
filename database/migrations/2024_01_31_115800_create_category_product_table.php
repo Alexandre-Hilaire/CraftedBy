@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,8 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('category_product', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->foreignUuid('product_id');
+            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
+            $table->foreignUuid('product_id')->constrained();
             $table->foreignUuid('category_id');
             $table->timestamps();
         });

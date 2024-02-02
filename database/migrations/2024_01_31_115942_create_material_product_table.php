@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('models', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('material_product', function (Blueprint $table) {
+            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
             $table->timestamps();
-            $table->string('model_name');
+            $table->foreignUuid('product_id')->constrained();
+            $table->foreignUuid('material_id')->constrained();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('material_product');
     }
 };
