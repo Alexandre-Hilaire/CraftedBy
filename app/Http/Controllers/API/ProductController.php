@@ -51,7 +51,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
+        if($product){
+            $product->update($request->all());
+        }
     }
 
     /**
@@ -59,6 +61,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete($product);
+        if($product){
+            $product->delete($product);
+        }
     }
 }

@@ -45,7 +45,9 @@ class CrafterController extends Controller
      */
     public function update(Request $request, Crafter $crafter)
     {
-        $crafter->update($request->all());
+        if($crafter){
+            $crafter->update($request->all());
+        }
     }
 
     /**
@@ -53,6 +55,8 @@ class CrafterController extends Controller
      */
     public function destroy(Crafter $crafter)
     {
-        $crafter->delete($crafter);
+        if($crafter){
+            $crafter->delete($crafter);
+        }
     }
 }
