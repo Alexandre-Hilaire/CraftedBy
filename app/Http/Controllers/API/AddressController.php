@@ -21,7 +21,17 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adress = Address::create([
+            'user_id' =>$request->get('user_id'),
+            'address_name'=>$request->get('address_name'),
+            'address_type'=>$request->get('address_type'),
+            'address_firstname'=>$request->get('address_firstname'),
+            'address_lastname'=>$request->get('address_lastname'),
+            'first_address'=>$request->get('first_address'),
+            'second_address'=>$request->get('second_address'),
+            'postal_code'=>$request->get('postal_code'),
+        ]);
+        return $adress;
     }
 
     /**
