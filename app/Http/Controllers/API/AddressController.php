@@ -55,8 +55,10 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Address $address)
     {
-        //
+        if ($address){
+            $address->delete($address);
+        }
     }
 }
