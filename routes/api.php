@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CrafterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
@@ -26,3 +27,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * GET / PUT / PATCH / DELETE api/products/{product}
 */
 Route::apiResource('products',ProductController::class);
+
+Route::apiResource('crafters', CrafterController::class);
