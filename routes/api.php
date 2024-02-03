@@ -34,4 +34,4 @@ Route::apiResource('crafters', CrafterController::class);
 
 Route::apiResource('images', ImageController::class);
 
-Route::apiResource('adresses',AddressController::class);
+Route::apiResource('addresses',AddressController::class);
