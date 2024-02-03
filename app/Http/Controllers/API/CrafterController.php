@@ -27,6 +27,7 @@ class CrafterController extends Controller
             'story'=>$request->get('story'),
             'crafting_process'=>$request->get('crafting_process'),
             'material_preference'=>$request->get('material_preference'),
+            'location' => $request->get('location'),
         ]);
         return $crafter;
     }
