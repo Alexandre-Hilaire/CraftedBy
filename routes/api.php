@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\API\CrafterController;
+use App\Http\Controllers\API\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('products',ProductController::class);
 
 Route::apiResource('crafters', CrafterController::class);
+
+Route::apiResource('images', ImageController::class);
