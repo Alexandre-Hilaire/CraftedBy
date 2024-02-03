@@ -21,7 +21,12 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = Image::create([
+            'path'=>$request->get('path'),
+            'imagable_type'=>$request->get('imagable_type'),
+            'imagable_id'=>$request->get('imagable_id'),
+        ]);
+        return $image;
     }
 
     /**
