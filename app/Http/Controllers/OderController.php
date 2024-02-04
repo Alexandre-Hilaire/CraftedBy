@@ -52,8 +52,10 @@ class OderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $order)
     {
-        //
+        if ($order){
+            $order->delete($order);
+        }
     }
 }
