@@ -21,7 +21,10 @@ class PmodelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pmodel = Pmodel::create([
+            'pmodel_name'=>$request->get('pmodel_name'),
+        ]);
+        return $pmodel;
     }
 
     /**

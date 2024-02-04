@@ -17,7 +17,7 @@ class PmodelFactory extends Factory
     public function definition(): array
     {
         return [
-            'model_name'=>fake()->realText($maxNbChars=10),
+            'pmodel_name'=>fake()->realText($maxNbChars=10),
         ];
     }
 }
