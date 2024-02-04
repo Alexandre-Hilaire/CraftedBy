@@ -50,6 +50,8 @@ class PmodelController extends Controller
      */
     public function destroy(Pmodel $pmodel)
     {
-        //
+        if ($pmodel){
+            $pmodel->delete($pmodel);
+        }
     }
 }
