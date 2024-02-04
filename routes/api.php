@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\CrafterController;
 use App\Http\Controllers\API\ImageController;
+use App\Http\Controllers\API\PmodelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
@@ -35,3 +36,5 @@ Route::apiResource('crafters', CrafterController::class);
 Route::apiResource('images', ImageController::class);
 
 Route::apiResource('addresses',AddressController::class);
+
+Route::apiResource('pmodels', PmodelController::class);

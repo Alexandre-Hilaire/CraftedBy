@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pmodels', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
-            $table->string('model_name');
+            $table->string('pmodel_name');
         });
     }
 
