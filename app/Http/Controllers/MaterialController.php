@@ -20,7 +20,10 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $material = Material::create([
+            'material_name' => $request -> get('material_name'),
+        ]);
+        return $material;
     }
 
     /**
