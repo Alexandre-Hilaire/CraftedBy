@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\MaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,5 @@ Route::apiResource('addresses',AddressController::class);
 Route::apiResource('pmodels', PmodelController::class);
 
 Route::apiResource('categories', CategoryController::class);
+
+Route::apiResource('materials', MaterialController::class);
