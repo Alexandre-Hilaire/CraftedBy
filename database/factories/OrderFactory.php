@@ -23,8 +23,8 @@ class OrderFactory extends Factory
             'order_status'=>rand(0,7),
             'order_price'=>fake()->randomFloat(2,0,1000),
             'order_date'=>fake()-> dateTime(),
-            'delivery_adress'=> fake()->streetAddress(),
-            'facturation_adress'=>fake()->streetAddress(),
+            'delivery_address'=> fake()->streetAddress(),
+            'facturation_address'=>fake()->streetAddress(),
         ];
     }
 }
