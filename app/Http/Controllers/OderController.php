@@ -20,7 +20,15 @@ class OderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create([
+            'user_id'=>$request->get('user_id'),
+            'order_status'=>$request->get('order_status'),
+            'order_price'=>$request->get('order_price'),
+            'order_date'=>$request->get('order_date'),
+            'delivery_address'=>$request->get('delivery_address'),
+            'facturation_address'=>$request->get('facturation_address'),
+        ]);
+        return $order;
     }
 
     /**

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('order_status');
             $table->float('order_price');
             $table->date('order_date');
-            $table->string('delivery_adress');
-            $table->string('facturation_adress');
+            $table->string('delivery_address');
+            $table->string('facturation_address');
         });
     }
 
