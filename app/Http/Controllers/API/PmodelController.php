@@ -40,7 +40,9 @@ class PmodelController extends Controller
      */
     public function update(Request $request, Pmodel $pmodel)
     {
-        //
+        if ($pmodel){
+            $pmodel->update($request->all());
+        }
     }
 
     /**
