@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AddressController;
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CrafterController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\PmodelController;
@@ -38,3 +39,5 @@ Route::apiResource('images', ImageController::class);
 Route::apiResource('addresses',AddressController::class);
 
 Route::apiResource('pmodels', PmodelController::class);
+
+Route::apiResource('categories', CategoryController::class);
