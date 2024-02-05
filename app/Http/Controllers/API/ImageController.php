@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImageRequest;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -19,13 +20,9 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreImageRequest $request)
     {
-        $image = Image::create([
-            'path'=>$request->get('path'),
-            'imagable_type'=>$request->get('imagable_type'),
-            'imagable_id'=>$request->get('imagable_id'),
-        ]);
+        $image = Image::create($request->validated());
         return $image;
     }
 
@@ -40,7 +37,7 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Image $image)
+    public function update(StoreImageRequest $request, Image $image)
     {
         if ($image){
             $image->update($request->all());
