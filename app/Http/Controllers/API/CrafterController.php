@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCrafterRequest;
 use App\Models\Crafter;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class CrafterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCrafterRequest $request)
     {
         $crafter = Crafter::create([
             'user_id' => $request->get('user_id'),
@@ -43,7 +44,7 @@ class CrafterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Crafter $crafter)
+    public function update(StoreCrafterRequest $request, Crafter $crafter)
     {
         if($crafter){
             $crafter->update($request->all());
