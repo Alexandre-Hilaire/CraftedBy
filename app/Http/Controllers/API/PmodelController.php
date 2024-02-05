@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePmodelRequest;
 use App\Models\Pmodel;
 use Illuminate\Http\Request;
 
@@ -19,11 +20,9 @@ class PmodelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePmodelRequest $request)
     {
-        $pmodel = Pmodel::create([
-            'pmodel_name'=>$request->get('pmodel_name'),
-        ]);
+        $pmodel = Pmodel::create($request->validated());
         return $pmodel;
     }
 
@@ -38,7 +37,7 @@ class PmodelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pmodel $pmodel)
+    public function update(StorePmodelRequest $request, Pmodel $pmodel)
     {
         if ($pmodel){
             $pmodel->update($request->all());

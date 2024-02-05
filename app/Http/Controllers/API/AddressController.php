@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAddressRequest;
 use App\Models\Address;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,9 @@ class AddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAddressRequest $request)
     {
-        $adress = Address::create([
+        $address = Address::create([
             'user_id' =>$request->get('user_id'),
             'address_name'=>$request->get('address_name'),
             'address_type'=>$request->get('address_type'),
@@ -31,7 +32,7 @@ class AddressController extends Controller
             'second_address'=>$request->get('second_address'),
             'postal_code'=>$request->get('postal_code'),
         ]);
-        return $adress;
+        return $address;
     }
 
     /**
@@ -45,7 +46,7 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Address $address)
+    public function update(StoreAddressRequest $request, Address $address)
     {
         if ($address){
             $address->update($request->all());

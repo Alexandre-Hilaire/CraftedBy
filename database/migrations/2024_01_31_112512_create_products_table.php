@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
-            $table->foreignUuid('pmodel_id')->constrained()->nullable();
+            $table->foreignUuid('pmodel_id')->nullable()->constrained();
             $table->foreignUuid('user_id')->constrained();
             $table->float('unit_price');
             $table->string('name');

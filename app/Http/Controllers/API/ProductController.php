@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,19 +26,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $product = Product::create([
-            'user_id' => $request->get('user_id'),
-            'pmodel_id' => $request->get('pmodel_id'),
-            'unit_price' => $request->get('unit_price'),
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'status' => $request->get('status'),
-            'color'=> $request->get('color'),
-            'customizable'=>$request->get('customizable'),
-            'is_active'=>$request->get('is_active'),
-        ]);
+        $product = Product::create( $request->validated());
         return $product;
     }
 
@@ -51,7 +43,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
         if($product){
             $product->update($request->all());
