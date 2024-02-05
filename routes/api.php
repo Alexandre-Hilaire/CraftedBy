@@ -50,3 +50,7 @@ Route::apiResource('materials', MaterialController::class);
 Route::apiResource('orders', OderController::class);
 
 Route::apiResource('users', UserController::class);
+
+// * Search filters routes
+
+Route::get('/products/search/{categoryId}', [ProductController::class, 'searchByCatergories']);

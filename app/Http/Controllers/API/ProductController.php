@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 //* INFO  Il faut bien penser à nommer comme la route, id devient l'objet
@@ -64,5 +65,17 @@ class ProductController extends Controller
         if($product){
             $product->delete($product);
         }
+    }
+
+    public function searchByCatergories($categoryId){
+
+        $products = DB::table('products')
+        ->join('category_product', 'products.id', '=', 'category_product.product_id')
+        ->join('categories', 'category_product.category_id', '=', 'categories.id')
+        ->where('categories.id', $categoryId)
+        ->select('products.*')
+        ->get();
+
+        return response()->json($products);
     }
 }
