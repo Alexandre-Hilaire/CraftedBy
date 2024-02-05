@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,17 +19,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $user = User::create([
-            'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname'),
-            'birthdate' => $request->get('birthdate'),
-            'email' => $request->get('email'),
-            'role' => $request->get('role'),
-            'phone_number' => $request->get('phone_number'),
-            'password' => $request->get('password'),
-        ]);
+        $user = User::create($request->validated());
         return $user;
     }
 
@@ -43,7 +36,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUserRequest $request, User $user)
     {
         if ($user){
             $user->update($request->all());
