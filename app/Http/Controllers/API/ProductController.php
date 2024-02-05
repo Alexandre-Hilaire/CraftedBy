@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
@@ -27,18 +28,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
-        $product = Product::create([
-            'user_id' => $request->get('user_id'),
-            'pmodel_id' => $request->get('pmodel_id'),
-            'unit_price' => $request->get('unit_price'),
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'status' => $request->get('status'),
-            'color'=> $request->get('color'),
-            'customizable'=>$request->get('customizable'),
-            'is_active'=>$request->get('is_active'),
-        ]);
+        $product = Product::create( $request->validated());
         return $product;
     }
 

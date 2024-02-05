@@ -22,14 +22,7 @@ class CrafterController extends Controller
      */
     public function store(StoreCrafterRequest $request)
     {
-        $crafter = Crafter::create([
-            'user_id' => $request->get('user_id'),
-            'information'=> $request->get('information'),
-            'story'=>$request->get('story'),
-            'crafting_process'=>$request->get('crafting_process'),
-            'material_preference'=>$request->get('material_preference'),
-            'location' => $request->get('location'),
-        ]);
+        $crafter = Crafter::create($request->validated());
         return $crafter;
     }
 
