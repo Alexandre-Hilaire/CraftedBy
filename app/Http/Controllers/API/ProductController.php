@@ -39,7 +39,6 @@ class ProductController extends Controller
             'customizable'=>$request->get('customizable'),
             'is_active'=>$request->get('is_active'),
         ]);
-        $validated = $request->validated();
         return $product;
     }
 
