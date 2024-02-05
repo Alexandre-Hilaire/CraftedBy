@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 //* INFO  Il faut bien penser à nommer comme la route, id devient l'objet
@@ -64,5 +66,14 @@ class ProductController extends Controller
         if($product){
             $product->delete($product);
         }
+    }
+
+    public function searchByCatergories($categoryId){
+
+        $products = Product::whereHas('categories', function (Builder $query) use ($categoryId) {
+            $query->where('category_id', $categoryId);
+        })->get();
+
+        return $products;
     }
 }
