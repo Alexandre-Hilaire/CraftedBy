@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -69,13 +70,10 @@ class ProductController extends Controller
 
     public function searchByCatergories($categoryId){
 
-        $products = DB::table('products')
-        ->join('category_product', 'products.id', '=', 'category_product.product_id')
-        ->join('categories', 'category_product.category_id', '=', 'categories.id')
-        ->where('categories.id', $categoryId)
-        ->select('products.*')
-        ->get();
+        $products = Product::whereHas('categories', function (Builder $query) use ($categoryId) {
+            $query->where('category_id', $categoryId);
+        })->get();
 
-        return response()->json($products);
+        return $products;
     }
 }
