@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,33 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $order = Order::create($request->validated());
+        $validatedData = $request->validated();
+
+        $total_price = 0;
+        // * for each product in the order we calcultate the total price
+        foreach ($validatedData['products'] as $productData) {
+            $total_price += $productData['product_unit_price'] * $productData['quantity'];
+        }
+    
+        // * create the order with the total price in the order_price
+        $order = Order::create([
+            'user_id' => $validatedData['user_id'],
+            'order_status' => $validatedData['order_status'],
+            'order_date' => $validatedData['order_date'],
+            'delivery_address' => $validatedData['delivery_address'],
+            'facturation_address' => $validatedData['facturation_address'],
+            'order_price' => $total_price,
+        ]);
+
+        // * Attach products to orders in the orders_products table
+        foreach ($validatedData['products'] as $productData) {
+            $order->products()->attach($productData['product_id'], [
+                'product_name' => $productData['product_name'],
+                'product_unit_price' => $productData['product_unit_price'],
+                'quantity' => $productData['quantity'],
+            ]);
+        }
+    
         return $order;
     }
 
@@ -39,7 +66,7 @@ class OrderController extends Controller
      */
     public function update(StoreOrderRequest $request, Order $order)
     {
-        if ($order){
+        if ($order) {
             $order->update($request->all());
         }
     }
@@ -49,17 +76,18 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        if ($order){
+        if ($order) {
             $order->delete($order);
         }
     }
 
-    public function searchByUser ($userId){
+    public function searchByUser($userId)
+    {
 
-        $orders = Order::whereHas('users', function (Builder $query) use($userId){
+        $orders = Order::whereHas('users', function (Builder $query) use ($userId) {
             $query->where('user_id', $userId);
         })->get();
-        
+
         return $orders;
     }
 }
