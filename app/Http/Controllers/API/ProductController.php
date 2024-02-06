@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
-//* INFO  Il faut bien penser à nommer comme la route, id devient l'objet
+//* INFO  remember to name funtctions has they are named in routes, id becomes the object
 {
 
 

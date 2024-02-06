@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\OderController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -47,10 +47,12 @@ Route::apiResource('categories', CategoryController::class);
 
 Route::apiResource('materials', MaterialController::class);
 
-Route::apiResource('orders', OderController::class);
+Route::apiResource('orders', OrderController::class);
 
 Route::apiResource('users', UserController::class);
 
 // * Search filters routes
 
 Route::get('/products/search/{categoryId}', [ProductController::class, 'searchByCatergories']);
+
+Route::get('/orders/search/{userID}',[OrderController::class, 'searchByUser']);

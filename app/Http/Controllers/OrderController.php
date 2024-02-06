@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class OderController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -51,5 +52,14 @@ class OderController extends Controller
         if ($order){
             $order->delete($order);
         }
+    }
+
+    public function searchByUser ($userId){
+
+        $orders = Order::whereHas('users', function (Builder $query) use($userId){
+            $query->where('user_id', $userId);
+        })->get();
+        
+        return $orders;
     }
 }
