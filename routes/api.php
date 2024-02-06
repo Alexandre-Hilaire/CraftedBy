@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CrafterController;
