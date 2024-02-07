@@ -26,6 +26,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
+        $this->authorize('create', Product::class);
+
         $product = Product::create( $request->validated());
         return $product;
     }
@@ -43,6 +46,8 @@ class ProductController extends Controller
      */
     public function update(StoreProductRequest $request, Product $product)
     {
+        $this->authorize('update', $product);
+
         if($product){
             $product->update($request->all());
         }
@@ -53,6 +58,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product);
+
         if($product){
             $product->delete($product);
         }
