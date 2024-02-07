@@ -53,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('materials', MaterialController::class)->except(["index", "show"]);
 
-    Route::apiResource('pmodels', PmodelController::class)->except(["index", "show"]);;
+    Route::apiResource('pmodels', PmodelController::class)->except(["index", "show"]);
 
     // * Search filters routes
 
