@@ -32,23 +32,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * GET / POST : api/products
  * GET / PUT / PATCH / DELETE api/products/{product}
 */
-Route::apiResource('products',ProductController::class);
+
+// * Protected routes, you must be authentitcate
+Route::middleware(['auth:sanctum'])->group(function() {
+
+    Route::apiResource('addresses',AddressController::class);
+    
+    Route::apiResource('orders', OrderController::class);
+    
+    Route::apiResource('users', UserController::class);
+
+});
+
 
 Route::apiResource('crafters', CrafterController::class);
-
+    
 Route::apiResource('images', ImageController::class);
 
-Route::apiResource('addresses',AddressController::class);
-
-Route::apiResource('pmodels', PmodelController::class);
+Route::apiResource('products',ProductController::class);
 
 Route::apiResource('categories', CategoryController::class);
-
+    
 Route::apiResource('materials', MaterialController::class);
 
-Route::apiResource('orders', OrderController::class);
-
-Route::apiResource('users', UserController::class);
+Route::apiResource('pmodels', PmodelController::class);
 
 // * Search filters routes
 
