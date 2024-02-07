@@ -43,22 +43,34 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('users', UserController::class);
 
-    Route::apiResource('crafters', CrafterController::class)->except(["index", "show"]);
+    Route::apiResource('crafters', CrafterController::class);
 
-    Route::apiResource('images', ImageController::class)->except(["index", "show"]);
+    Route::apiResource('images', ImageController::class);
 
-    Route::apiResource('products', ProductController::class)->except(["index", "show", "searchByCatergories"]);
+    Route::apiResource('products', ProductController::class);
 
-    Route::apiResource('categories', CategoryController::class)->except(["index", "show"]);
+    Route::apiResource('categories', CategoryController::class);
 
-    Route::apiResource('materials', MaterialController::class)->except(["index", "show"]);
+    Route::apiResource('materials', MaterialController::class);
 
-    Route::apiResource('pmodels', PmodelController::class)->except(["index", "show"]);
+    Route::apiResource('pmodels', PmodelController::class);
 
     // * Search filters routes
 
     Route::get('/orders/search/{userID}', [OrderController::class, 'searchByUser']);
 });
 
-    // * Search filters routes
+
     Route::get('/products/search/{categoryId}', [ProductController::class, 'searchByCatergories']);
+
+    Route::apiResource('crafters', CrafterController::class)->only(["index", "show"]);
+
+    Route::apiResource('images', ImageController::class)->only(["index", "show"]);
+
+    Route::apiResource('products', ProductController::class)->only(["index", "show", "searchByCatergories"]);
+
+    Route::apiResource('categories', CategoryController::class)->only(["index", "show"]);
+
+    Route::apiResource('materials', MaterialController::class)->only(["index", "show"]);
+
+    Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);;
