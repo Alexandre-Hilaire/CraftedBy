@@ -77,4 +77,7 @@ class User extends Authenticatable
     public function isCrafter(): bool {
         return $this->role === RoleEnum::CRAFTER;
     }
+    public function isUser(): bool {
+        return $this->role === RoleEnum::USER;
+    }
 }
