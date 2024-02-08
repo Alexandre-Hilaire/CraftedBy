@@ -21,6 +21,7 @@ class MaterialController extends Controller
      */
     public function store(StoreMaterialRequest $request)
     {
+        $this->authorize('store', Material::class);
         $material = Material::create($request->validated());
         return $material;
     }
@@ -38,6 +39,7 @@ class MaterialController extends Controller
      */
     public function update(StoreMaterialRequest $request, Material $material)
     {
+        $this->authorize('update', $material);
         if ($material){
             $material->update($request->all());
         }
@@ -48,6 +50,7 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
+        $this->authorize('destroy', $material);
         if ($material){
             $material->delete($material);
         }

@@ -39,6 +39,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('user', function($user){
             return $user->role === RoleEnum::USER;
         });
-
     }
 }

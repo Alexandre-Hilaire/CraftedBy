@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\Gate;
 
 class CategoryController extends Controller
 {
@@ -22,6 +22,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $this->authorize('store', Category::class);
         $category = Category::create($request->validated());
         return $category;
     }
@@ -39,6 +40,7 @@ class CategoryController extends Controller
      */
     public function update(StoreCategoryRequest $request, Category $category)
     {
+        $this->authorize('update', $category);
         if ($category){
             $category->update($request->all());
         }
@@ -49,6 +51,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->authorize('destroy', $category);
         if ($category){
             $category->delete($category);
         }

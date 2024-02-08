@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        $this->authorize('create', Product::class);
+        $this->authorize('store', Product::class);
 
         $product = Product::create( $request->validated());
         return $product;
