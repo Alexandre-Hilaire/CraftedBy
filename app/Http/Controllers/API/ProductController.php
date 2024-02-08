@@ -29,8 +29,23 @@ class ProductController extends Controller
 
         $this->authorize('store', Product::class);
 
-        $product = Product::create( $request->validated());
-        return $product;
+        $product = Product::create([
+            'user_id'=>$request->validated()['user_id'],
+            'name'=>$request->validated()['name'],
+            'pModel_id'=>$request->validated()['pModel_id'],
+            'unit_price'=>$request->validated()['unit_price'],
+            'description'=>$request->validated()['description'],
+            'status'=>$request->validated()['status'],
+            'color'=>$request->validated()['color'],
+            'customizable'=>$request->validated()['customizable'],
+            'is_active'=>$request->validated()['is_active'],
+        ]);
+
+        $product->categories()->attach($request->validated()['categories_ids']);
+
+        $product->materials()->attach($request->validated()['materials_ids']);
+
+        return $product->load(['categories', 'materials']);
     }
 
     /**
@@ -47,10 +62,23 @@ class ProductController extends Controller
     public function update(StoreProductRequest $request, Product $product)
     {
         $this->authorize('update', $product);
+        $product->update(['user_id'=>$request->validated()['user_id'],
+        'name'=>$request->validated()['name'],
+        'pModel_id'=>$request->validated()['pModel_id'],
+        'unit_price'=>$request->validated()['unit_price'],
+        'description'=>$request->validated()['description'],
+        'status'=>$request->validated()['status'],
+        'color'=>$request->validated()['color'],
+        'customizable'=>$request->validated()['customizable'],
+        'is_active'=>$request->validated()['is_active'],
+        ]);
+        
 
-        if($product){
-            $product->update($request->all());
-        }
+        $product->categories()->attach($request->validated()['categories_ids']);
+
+        $product->materials()->attach($request->validated()['materials_ids']);
+
+        return $product->load(['categories', 'materials']);
     }
 
     /**
