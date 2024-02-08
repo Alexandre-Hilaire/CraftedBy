@@ -76,7 +76,6 @@ class ProductController extends Controller
         $product->update([
             'user_id' => $request->validated()['user_id'],
             'name' => $request->validated()['name'],
-            'pModel_id' => $request->validated()['pModel_id'],
             'unit_price' => $request->validated()['unit_price'],
             'description' => $request->validated()['description'],
             'status' => $request->validated()['status'],
@@ -85,12 +84,25 @@ class ProductController extends Controller
             'is_active' => $request->validated()['is_active'],
         ]);
 
+        $product->categories()->detach();
+        $product->materials()->detach();
 
         $product->categories()->attach($request->validated()['categories_ids']);
 
         $product->materials()->attach($request->validated()['materials_ids']);
 
-        return $product->load(['categories', 'materials']);
+        $pmodelName = $request->validated()['pmodel_name'];
+        if (!empty($pmodelName)) {
+            $pModel = Pmodel::where('pmodel_name', $pmodelName)->first();
+            if (!$pModel) {
+                $pModel = Pmodel::create([
+                    'name' => $pmodelName,
+                ]);
+            }
+                $product->pmodel()->associate($pModel->id);
+        }
+
+        return $product->load(['categories', 'materials','pmodel']);
     }
 
     /**
