@@ -39,6 +39,7 @@ class CrafterController extends Controller
      */
     public function update(StoreCrafterRequest $request, Crafter $crafter)
     {
+        $this->authorize('update', $crafter);
         if($crafter){
             $crafter->update($request->all());
         }
@@ -49,6 +50,7 @@ class CrafterController extends Controller
      */
     public function destroy(Crafter $crafter)
     {
+        $this->authorize('destroy', $crafter);
         if($crafter){
             $crafter->delete($crafter);
         }

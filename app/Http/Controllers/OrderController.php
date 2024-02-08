@@ -66,6 +66,7 @@ class OrderController extends Controller
      */
     public function update(StoreOrderRequest $request, Order $order)
     {
+        $this->authorize('update', $order);
         if ($order) {
             $order->update($request->all());
         }
@@ -76,6 +77,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $this->authorize('destroy', $order);
         if ($order) {
             $order->delete($order);
         }

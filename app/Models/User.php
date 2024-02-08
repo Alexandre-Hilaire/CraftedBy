@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -67,5 +68,16 @@ class User extends Authenticatable
     }
     public function images(): MorphMany{
         return $this->morphMany(Image::class, 'imagable');
+    }
+
+    // * roles
+    public function isAdmin(): bool {
+        return $this->role === RoleEnum::ADMIN;
+    }
+    public function isCrafter(): bool {
+        return $this->role === RoleEnum::CRAFTER;
+    }
+    public function isUser(): bool {
+        return $this->role === RoleEnum::USER;
     }
 }

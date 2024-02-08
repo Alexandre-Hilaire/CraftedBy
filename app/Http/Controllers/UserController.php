@@ -38,6 +38,7 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, User $user)
     {
+        $this->authorize('update', $user);
         if ($user){
             $user->update($request->all());
         }
@@ -48,6 +49,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('destroy', $user);
         if ($user){
             $user->delete($user);
         }
