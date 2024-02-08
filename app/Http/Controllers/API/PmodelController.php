@@ -22,6 +22,7 @@ class PmodelController extends Controller
      */
     public function store(StorePmodelRequest $request)
     {
+        $this->authorize('store', Pmodel::class);
         $pmodel = Pmodel::create($request->validated());
         return $pmodel;
     }
@@ -39,6 +40,7 @@ class PmodelController extends Controller
      */
     public function update(StorePmodelRequest $request, Pmodel $pmodel)
     {
+        $this->authorize('update', $pmodel);
         if ($pmodel){
             $pmodel->update($request->all());
         }
@@ -49,6 +51,7 @@ class PmodelController extends Controller
      */
     public function destroy(Pmodel $pmodel)
     {
+        $this->authorize('destroy', $pmodel);
         if ($pmodel){
             $pmodel->delete($pmodel);
         }
