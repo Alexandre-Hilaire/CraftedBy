@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user->load('addresses');
+        return $user->load('addresses', 'products', 'crafter', 'orders');
     }
 
     /**

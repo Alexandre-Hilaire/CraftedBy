@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Image;
 use App\Models\Pmodel;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -57,8 +58,17 @@ class ProductController extends Controller
             }
             $product->pmodel()->associate($pModel->id);
         }
+        if ($request->has('image_ids')) {
+            $imageIds = $request->validated()['image_ids'];
+            foreach ($imageIds as $imageId) {
+                $image = Image::find($imageId);
+                if ($image) {
+                    $product->images()->save($image);
+                }
+            }
+        }
 
-        return $product->load(['categories', 'materials', 'pmodel', 'users']);
+        return $product->load(['categories', 'materials', 'pmodel', 'user','images']);
     }
 
     /**
@@ -99,6 +109,15 @@ class ProductController extends Controller
         if (!empty($pmodelName)) {
             $pModel = Pmodel::firstOrCreate(['pmodel_name' => $pmodelName]);
             $product->pmodel()->associate($pModel);
+        }
+        if ($request->has('image_ids')) {
+            $imageIds = $request->validated()['image_ids'];
+            foreach ($imageIds as $imageId) {
+                $image = Image::find($imageId);
+                if ($image) {
+                    $product->images()->attach($image->id);
+                }
+            }
         }
 
         return $product->load(['categories', 'materials', 'pmodel', 'user']);

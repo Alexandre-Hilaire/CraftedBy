@@ -32,7 +32,8 @@ class StoreProductRequest extends FormRequest
             'customizable' => 'nullable',
             'is_active' => 'required',
             'categories_ids' => 'required',
-            'materials_ids' => 'required'
+            'materials_ids' => 'required',
+            'image_ids' => 'nullable|array|exists:images,id',
         ];
     }
 }
