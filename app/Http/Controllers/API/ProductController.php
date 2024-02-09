@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Pmodel;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class ProductController extends Controller
@@ -30,8 +31,9 @@ class ProductController extends Controller
 
         $this->authorize('store', Product::class);
 
-        $product = Product::create([
-            'user_id' => $request->validated()['user_id'],
+        $user = User::findOrFail($request->validated()['user_id']);
+
+        $product = $user->products()->create([
             'name' => $request->validated()['name'],
             'unit_price' => $request->validated()['unit_price'],
             'description' => $request->validated()['description'],
@@ -53,10 +55,10 @@ class ProductController extends Controller
                     'name' => $pmodelName,
                 ]);
             }
-                $product->pmodel()->associate($pModel->id);
+            $product->pmodel()->associate($pModel->id);
         }
 
-        return $product->load(['categories', 'materials','pmodel']);
+        return $product->load(['categories', 'materials', 'pmodel', 'users']);
     }
 
     /**
@@ -73,8 +75,8 @@ class ProductController extends Controller
     public function update(StoreProductRequest $request, Product $product)
     {
         $this->authorize('update', $product);
+
         $product->update([
-            'user_id' => $request->validated()['user_id'],
             'name' => $request->validated()['name'],
             'unit_price' => $request->validated()['unit_price'],
             'description' => $request->validated()['description'],
@@ -84,25 +86,22 @@ class ProductController extends Controller
             'is_active' => $request->validated()['is_active'],
         ]);
 
+        $user = User::findOrFail($request->validated()['user_id']);
+        $product->user()->associate($user);
+
         $product->categories()->detach();
         $product->materials()->detach();
 
         $product->categories()->attach($request->validated()['categories_ids']);
-
         $product->materials()->attach($request->validated()['materials_ids']);
 
         $pmodelName = $request->validated()['pmodel_name'];
         if (!empty($pmodelName)) {
-            $pModel = Pmodel::where('pmodel_name', $pmodelName)->first();
-            if (!$pModel) {
-                $pModel = Pmodel::create([
-                    'name' => $pmodelName,
-                ]);
-            }
-                $product->pmodel()->associate($pModel->id);
+            $pModel = Pmodel::firstOrCreate(['pmodel_name' => $pmodelName]);
+            $product->pmodel()->associate($pModel);
         }
 
-        return $product->load(['categories', 'materials','pmodel']);
+        return $product->load(['categories', 'materials', 'pmodel', 'user']);
     }
 
     /**

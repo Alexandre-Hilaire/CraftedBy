@@ -25,7 +25,7 @@ class Product extends Model
     // * Sinon je peux juste dire ce que je veux transmettre
     // ? protected $visible = ['name', 'unit_price', 'description','color'];
 
-    public function users(): BelongsTo{
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }
     public function oders(): BelongsToMany{
