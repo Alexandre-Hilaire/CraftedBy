@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCrafterRequest;
 use App\Models\Crafter;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CrafterController extends Controller
@@ -22,8 +23,16 @@ class CrafterController extends Controller
      */
     public function store(StoreCrafterRequest $request)
     {
-        $crafter = Crafter::create($request->validated());
-        return $crafter;
+        $user = User::findOrFail($request->validated()['user_id']);
+        $crafter = $user->crafter()->create([
+            'information'=>$request->validated()['information'],
+            'story'=>$request->validated()['story'],
+            'crafting_process'=>$request->validated()['crafting_process'],
+            'material_preference'=>$request->validated()['material_preference'],
+            'location'=>$request->validated()['location'],
+        ]);
+
+        return $crafter->load('users');
     }
 
     /**
@@ -41,7 +50,14 @@ class CrafterController extends Controller
     {
         $this->authorize('update', $crafter);
         if($crafter){
-            $crafter->update($request->all());
+            $user = User::findOrFail($request->validated()['user_id']);
+            $crafter = $user->crafter()->update([
+                'information'=>$request->validated()['information'],
+                'story'=>$request->validated()['story'],
+                'crafting_process'=>$request->validated()['crafting_process'],
+                'material_preference'=>$request->validated()['material_preference'],
+                'location'=>$request->validated()['location'],
+            ]);
         }
     }
 

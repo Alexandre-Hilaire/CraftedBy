@@ -51,7 +51,17 @@ class AddressController extends Controller
     public function update(StoreAddressRequest $request, Address $address)
     {
         if ($address){
-            $address->update($request->all());
+            $user = User::findOrFail($request->validated()['user_id']);
+
+            $address = $user->addresses()->update([
+                'address_name'=>$request->validated()['address_name'],
+                'address_type'=>$request->validated()['address_type'],
+                'address_firstname'=>$request->validated()['address_firstname'],
+                'address_lastname'=>$request->validated(['address_lastname']),
+                'first_address'=>$request->validated()['first_address'],
+                'second_address'=>$request->validated()['second_address'],
+                'postal_code'=>$request->validated()['postal_code'],
+            ]);
         }
     }
 
