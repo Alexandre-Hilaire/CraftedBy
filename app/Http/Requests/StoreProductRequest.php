@@ -23,7 +23,7 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'user_id' => 'required|max:255',
-            'pmodel_name' => 'nullable|max:255|exists:pmodels,pmodel_name',
+            'pmodel_name' => 'nullable|max:255',
             'unit_price' => 'required',
             'name' => 'required|unique:products|max:255',
             'description' => 'required|unique:products|max:255',

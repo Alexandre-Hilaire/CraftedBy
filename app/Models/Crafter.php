@@ -20,6 +20,6 @@ class Crafter extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public function images(): MorphMany{
-        return $this->morphMany(Image::class, 'imagable_id');
+        return $this->morphMany(Image::class, 'imagable');
     }
 }

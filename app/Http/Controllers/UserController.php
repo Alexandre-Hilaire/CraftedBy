@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,18 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
-        return $user;
+
+        if ($request->has('image_ids')){
+            $imageIds = $request->validated()['image_ids'];
+            foreach ($imageIds as $imageId) {
+                $image = Image::find($imageId);
+                if($image){
+                    $user->images()->save($image);
+                }
+            }
+        }
+
+        return $user->load('images', 'addresses', 'products', 'crafter', 'orders');
     }
 
     /**

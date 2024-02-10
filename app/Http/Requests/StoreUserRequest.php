@@ -29,6 +29,7 @@ class StoreUserRequest extends FormRequest
             'role' => 'required',
             'phone_number' => 'required|max:255',
             'password' => 'required|max:255',
+            'image_ids'=> 'nullable|array|exists:images,id',
         ];
     }
 }

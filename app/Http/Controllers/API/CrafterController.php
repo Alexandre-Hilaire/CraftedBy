@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCrafterRequest;
 use App\Models\Crafter;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,17 @@ class CrafterController extends Controller
             'location'=>$request->validated()['location'],
         ]);
 
-        return $crafter->load('users');
+        if ($request->has('image_ids')){
+            $imagesIds = $request->validated()['image_ids'];
+            foreach ($imagesIds as $imageId){
+                $image = Image::find($imageId);
+                if ($image){
+                    $crafter->images()->save($image);
+                }
+            }
+        }
+
+        return $crafter->load('users', 'images');
     }
 
     /**
@@ -40,7 +51,7 @@ class CrafterController extends Controller
      */
     public function show(Crafter $crafter)
     {
-        return $crafter;
+        return $crafter->load('users', 'images');
     }
 
     /**
