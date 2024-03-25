@@ -139,7 +139,7 @@ class ProductController extends Controller
     {
 
         $products = Product::whereHas('categories', function (Builder $query) use ($categoryId) {
-            $query->where('category_id', $categoryId);
+            $query->where('category_name', $categoryId);
         })->get();
 
         return $products;
