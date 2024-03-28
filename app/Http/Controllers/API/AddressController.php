@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAddressRequest;
 use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -22,17 +23,18 @@ class AddressController extends Controller
      */
     public function store(StoreAddressRequest $request)
     {
-        $address = Address::create([
-            'user_id' =>$request->get('user_id'),
-            'address_name'=>$request->get('address_name'),
-            'address_type'=>$request->get('address_type'),
-            'address_firstname'=>$request->get('address_firstname'),
-            'address_lastname'=>$request->get('address_lastname'),
-            'first_address'=>$request->get('first_address'),
-            'second_address'=>$request->get('second_address'),
-            'postal_code'=>$request->get('postal_code'),
+        $user = User::findOrFail($request->validated()['user_id']);
+
+        $address = $user->addresses()->create([
+            'address_name'=>$request->validated()['address_name'],
+            'address_type'=>$request->validated()['address_type'],
+            'address_firstname'=>$request->validated()['address_firstname'],
+            'address_lastname'=>$request->validated(['address_lastname']),
+            'first_address'=>$request->validated()['first_address'],
+            'second_address'=>$request->validated()['second_address'],
+            'postal_code'=>$request->validated()['postal_code'],
         ]);
-        return $address;
+        return $address->load('users');
     }
 
     /**
@@ -49,7 +51,17 @@ class AddressController extends Controller
     public function update(StoreAddressRequest $request, Address $address)
     {
         if ($address){
-            $address->update($request->all());
+            $user = User::findOrFail($request->validated()['user_id']);
+
+            $address = $user->addresses()->update([
+                'address_name'=>$request->validated()['address_name'],
+                'address_type'=>$request->validated()['address_type'],
+                'address_firstname'=>$request->validated()['address_firstname'],
+                'address_lastname'=>$request->validated(['address_lastname']),
+                'first_address'=>$request->validated()['first_address'],
+                'second_address'=>$request->validated()['second_address'],
+                'postal_code'=>$request->validated()['postal_code'],
+            ]);
         }
     }
 

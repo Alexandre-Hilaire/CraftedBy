@@ -20,12 +20,12 @@ class Product extends Model
         /*
      * Si je veux ne pas envoyer certaines choses via la requète api
      */
-     protected $hidden = ['id','created_at','updated_at', 'pmodel_id', 'user_id','status','customizable','is_active'];
+     protected $hidden = ['created_at','updated_at', 'pmodel_id', 'user_id','status','customizable','is_active'];
 
     // * Sinon je peux juste dire ce que je veux transmettre
     // ? protected $visible = ['name', 'unit_price', 'description','color'];
 
-    public function users(): BelongsTo{
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }
     public function oders(): BelongsToMany{

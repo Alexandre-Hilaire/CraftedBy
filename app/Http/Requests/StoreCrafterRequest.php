@@ -28,6 +28,7 @@ class StoreCrafterRequest extends FormRequest
             'crafting_process'=> 'required|max:500',
             'material_preference'=>'required|max:255',
             'location' => 'required|max:255',
+            'image_ids'=>'nullable|array|exists:images,id',
         ];
     }
 }

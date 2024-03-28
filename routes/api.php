@@ -73,4 +73,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('materials', MaterialController::class)->only(["index", "show"]);
 
-    Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);;
+    Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);
