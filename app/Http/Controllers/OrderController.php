@@ -68,7 +68,16 @@ class OrderController extends Controller
     {
         $this->authorize('update', $order);
         if ($order) {
-            $order->update($request->all());
+            $order->update($request->except('products'));
+
+            // * must update products after in foreach because they are in other table (relationship table orders->products)
+            foreach ($request->input('products') as $productsData){
+                $order->products()->updateExistingPivot($productsData['product_id'], [
+                    'product_name' => $productsData['product_name'],
+                    'product_unit_price' => $productsData['product_unit_price'],
+                    'quantity' => $productsData['quantity'],
+                ]);
+            }
         }
     }
 
