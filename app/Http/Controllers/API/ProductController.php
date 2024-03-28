@@ -53,7 +53,7 @@ class ProductController extends Controller
             $pModel = Pmodel::where('pmodel_name', $pmodelName)->first();
             if (!$pModel) {
                 $pModel = Pmodel::create([
-                    'name' => $pmodelName,
+                    'pmodel_name' => $pmodelName,
                 ]);
             }
             $product->pmodel()->associate($pModel->id);
