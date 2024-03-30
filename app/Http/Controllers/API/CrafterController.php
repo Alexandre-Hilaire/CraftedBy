@@ -26,6 +26,7 @@ class CrafterController extends Controller
     {
         $user = User::findOrFail($request->validated()['user_id']);
         $crafter = $user->crafter()->create([
+            'crafter_name'=>$request->validated()['crafter_name'],
             'information'=>$request->validated()['information'],
             'story'=>$request->validated()['story'],
             'crafting_process'=>$request->validated()['crafting_process'],
@@ -63,6 +64,7 @@ class CrafterController extends Controller
         if($crafter){
             $user = User::findOrFail($request->validated()['user_id']);
             $crafter = $user->crafter()->update([
+                'crafter_name'=>$request->validated()['crafter_name'],
                 'information'=>$request->validated()['information'],
                 'story'=>$request->validated()['story'],
                 'crafting_process'=>$request->validated()['crafting_process'],
