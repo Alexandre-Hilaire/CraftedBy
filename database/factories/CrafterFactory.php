@@ -20,6 +20,7 @@ class CrafterFactory extends Factory
         $userWithoutCrafter = User::doesntHave('crafter')->inRandomOrder()->first()->id;
         return [
             'user_id'=> $userWithoutCrafter,
+            'crafter_name' => fake()->realText($maxNbChars = 255),
             'information' => fake() -> realText($maxNbChars = 255),
             'story' => fake() -> realText($maxNbChars = 255),
             'crafting_process' => fake() -> realText($maxNbChars = 255),

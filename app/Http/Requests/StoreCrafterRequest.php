@@ -23,6 +23,7 @@ class StoreCrafterRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'crafter_name' => 'required|max:255',
             'information'=> 'required|max:500',
             'story'=> 'required|max:500',
             'crafting_process'=> 'required|max:500',
