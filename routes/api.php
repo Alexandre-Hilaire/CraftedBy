@@ -39,6 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('addresses', AddressController::class);
 
+    Route::get('/addresses/search/{userId}', [AddressController::class, 'getUserAddresses']);
+
     Route::apiResource('orders', OrderController::class);
 
     Route::apiResource('users', UserController::class);
