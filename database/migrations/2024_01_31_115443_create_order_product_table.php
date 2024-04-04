@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignUuid('product_id')->constrained();
             $table->foreignUuid('order_id')->constrained();
             $table->string('product_name');
-            $table->float('product_unit_price');
+            $table->float('unit_price');
             $table->integer('quantity');
             $table->timestamps();
         });

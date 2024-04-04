@@ -28,7 +28,7 @@ class OrderController extends Controller
         $total_price = 0;
         // * for each product in the order we calcultate the total price
         foreach ($validatedData['products'] as $productData) {
-            $total_price += $productData['product_unit_price'] * $productData['quantity'];
+            $total_price += $productData['unit_price'] * $productData['quantity'];
         }
     
         // * create the order with the total price in the order_price
@@ -45,7 +45,7 @@ class OrderController extends Controller
         foreach ($validatedData['products'] as $productData) {
             $order->products()->attach($productData['product_id'], [
                 'product_name' => $productData['product_name'],
-                'product_unit_price' => $productData['product_unit_price'],
+                'unit_price' => $productData['unit_price'],
                 'quantity' => $productData['quantity'],
             ]);
         }
@@ -74,7 +74,7 @@ class OrderController extends Controller
             foreach ($request->input('products') as $productsData){
                 $order->products()->updateExistingPivot($productsData['product_id'], [
                     'product_name' => $productsData['product_name'],
-                    'product_unit_price' => $productsData['product_unit_price'],
+                    'unit_price' => $productsData['unit_price'],
                     'quantity' => $productsData['quantity'],
                 ]);
             }
