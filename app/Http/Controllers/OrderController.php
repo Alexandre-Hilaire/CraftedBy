@@ -34,8 +34,8 @@ class OrderController extends Controller
         // * create the order with the total price in the order_price
         $order = Order::create([
             'user_id' => $validatedData['user_id'],
-            'order_status' => $validatedData['order_status'],
-            'order_date' => $validatedData['order_date'],
+            'order_status' => 0,
+            'order_date' => now()->format('Y-m-d'),
             'delivery_address' => $validatedData['delivery_address'],
             'facturation_address' => $validatedData['facturation_address'],
             'order_price' => $total_price,
