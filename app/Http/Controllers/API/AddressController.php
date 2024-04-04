@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAddressRequest;
 use App\Models\Address;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -73,5 +74,9 @@ class AddressController extends Controller
         if ($address){
             $address->delete($address);
         }
+    }
+    public function getUserAddresses($userId) {
+        $addresses = Address::where('user_id', $userId)->get();
+        return $addresses;
     }
 }
