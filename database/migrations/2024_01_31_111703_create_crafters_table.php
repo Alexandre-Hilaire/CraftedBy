@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->foreignUuid('user_id')->constrained();
+            $table->text('crafter_name');
             $table->text('information');
             $table->text('story');
             $table->text('crafting_process');

@@ -23,8 +23,6 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'order_status' => 'required',
-            'order_date' => 'required',
             'delivery_address' => 'required|max:255',
             'facturation_address' => 'required|max:255',
             'products' => 'required|array',

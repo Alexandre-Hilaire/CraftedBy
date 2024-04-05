@@ -28,14 +28,14 @@ class OrderController extends Controller
         $total_price = 0;
         // * for each product in the order we calcultate the total price
         foreach ($validatedData['products'] as $productData) {
-            $total_price += $productData['product_unit_price'] * $productData['quantity'];
+            $total_price += $productData['unit_price'] * $productData['quantity'];
         }
     
         // * create the order with the total price in the order_price
         $order = Order::create([
             'user_id' => $validatedData['user_id'],
-            'order_status' => $validatedData['order_status'],
-            'order_date' => $validatedData['order_date'],
+            'order_status' => 0,
+            'order_date' => now()->format('Y-m-d'),
             'delivery_address' => $validatedData['delivery_address'],
             'facturation_address' => $validatedData['facturation_address'],
             'order_price' => $total_price,
@@ -45,7 +45,7 @@ class OrderController extends Controller
         foreach ($validatedData['products'] as $productData) {
             $order->products()->attach($productData['product_id'], [
                 'product_name' => $productData['product_name'],
-                'product_unit_price' => $productData['product_unit_price'],
+                'unit_price' => $productData['unit_price'],
                 'quantity' => $productData['quantity'],
             ]);
         }
@@ -68,7 +68,16 @@ class OrderController extends Controller
     {
         $this->authorize('update', $order);
         if ($order) {
-            $order->update($request->all());
+            $order->update($request->except('products'));
+
+            // * must update products after in foreach because they are in other table (relationship table orders->products)
+            foreach ($request->input('products') as $productsData){
+                $order->products()->updateExistingPivot($productsData['product_id'], [
+                    'product_name' => $productsData['product_name'],
+                    'unit_price' => $productsData['unit_price'],
+                    'quantity' => $productsData['quantity'],
+                ]);
+            }
         }
     }
 

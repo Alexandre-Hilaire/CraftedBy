@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCrafterRequest;
 use App\Models\Crafter;
+use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CrafterController extends Controller
@@ -22,8 +24,27 @@ class CrafterController extends Controller
      */
     public function store(StoreCrafterRequest $request)
     {
-        $crafter = Crafter::create($request->validated());
-        return $crafter;
+        $user = User::findOrFail($request->validated()['user_id']);
+        $crafter = $user->crafter()->create([
+            'crafter_name'=>$request->validated()['crafter_name'],
+            'information'=>$request->validated()['information'],
+            'story'=>$request->validated()['story'],
+            'crafting_process'=>$request->validated()['crafting_process'],
+            'material_preference'=>$request->validated()['material_preference'],
+            'location'=>$request->validated()['location'],
+        ]);
+
+        if ($request->has('image_ids')){
+            $imagesIds = $request->validated()['image_ids'];
+            foreach ($imagesIds as $imageId){
+                $image = Image::find($imageId);
+                if ($image){
+                    $crafter->images()->save($image);
+                }
+            }
+        }
+
+        return $crafter->load('users', 'images');
     }
 
     /**
@@ -31,7 +52,7 @@ class CrafterController extends Controller
      */
     public function show(Crafter $crafter)
     {
-        return $crafter;
+        return $crafter->load('users', 'images');
     }
 
     /**
@@ -41,7 +62,15 @@ class CrafterController extends Controller
     {
         $this->authorize('update', $crafter);
         if($crafter){
-            $crafter->update($request->all());
+            $user = User::findOrFail($request->validated()['user_id']);
+            $crafter = $user->crafter()->update([
+                'crafter_name'=>$request->validated()['crafter_name'],
+                'information'=>$request->validated()['information'],
+                'story'=>$request->validated()['story'],
+                'crafting_process'=>$request->validated()['crafting_process'],
+                'material_preference'=>$request->validated()['material_preference'],
+                'location'=>$request->validated()['location'],
+            ]);
         }
     }
 

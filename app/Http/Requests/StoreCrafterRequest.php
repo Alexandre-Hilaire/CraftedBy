@@ -23,11 +23,13 @@ class StoreCrafterRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
+            'crafter_name' => 'required|max:255',
             'information'=> 'required|max:500',
             'story'=> 'required|max:500',
             'crafting_process'=> 'required|max:500',
             'material_preference'=>'required|max:255',
             'location' => 'required|max:255',
+            'image_ids'=>'nullable|array|exists:images,id',
         ];
     }
 }
