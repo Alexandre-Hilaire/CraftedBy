@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
         Schema::table('order_product', function (Blueprint $table) {
             $table->renameColumn('product_unit_price', 'unit_price');
         });

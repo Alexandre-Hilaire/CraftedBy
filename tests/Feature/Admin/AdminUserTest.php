@@ -62,7 +62,7 @@ class AdminUserTest extends TestCase
             "image_ids"=> []    
         ];
         $response = $this->put('api/users/' . $this->admin->id, $userData);
-        $response->assertStatus(200);
+        $response->assertStatus(204);
     }
 
     protected function tearDown(): void

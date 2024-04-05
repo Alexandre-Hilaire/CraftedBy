@@ -22,7 +22,7 @@ class OrderSeeder extends Seeder
                 $quantity = rand(1,5);
                 $name = $product -> name;
                 $unit_price = $product -> unit_price;
-                $order -> products()->attach($product, ['product_name'=>$name, 'quantity'=>$quantity, 'product_unit_price'=>$unit_price]);       
+                $order -> products()->attach($product, ['product_name'=>$name, 'quantity'=>$quantity, 'unit_price'=>$unit_price]);       
             }
         });
     }
