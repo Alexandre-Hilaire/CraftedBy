@@ -31,13 +31,11 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --optimize-auto
 # Generate security key
 RUN php artisan key:generate
 # Optimizing Configuration loading
-RUN php artisan config:cache
 # Optimizing Route loading
 RUN php artisan route:cache
 # Optimizing View loading
 RUN php artisan view:cache
 
-# Compilation des assets de Breeze (ou de votre site)
 EXPOSE 80
 
 RUN chown -R application:application .
