@@ -6,6 +6,7 @@ use App\Enums\RoleEnum;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         $this->registerPolicies();
 
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
