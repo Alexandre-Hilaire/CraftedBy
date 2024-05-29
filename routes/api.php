@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdresseApi;
 use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CrafterController;
@@ -76,3 +77,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('materials', MaterialController::class)->only(["index", "show"]);
 
     Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);
+
+    // * AdressesAPI
+    Route::post('/searchAdress', [AdresseApi::class, 'searchAdress']);
