@@ -79,4 +79,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);
 
     // * AdressesAPI
-    Route::get('/searchAdress', [AdresseApi::class, 'searchAdress']);
+    Route::post('/searchAdress', [AdresseApi::class, 'searchAdress']);
