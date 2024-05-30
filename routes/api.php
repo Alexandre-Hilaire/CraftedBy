@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\MindeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 
@@ -61,6 +62,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // * Search filters routes
 
     Route::get('/orders/search/{userID}', [OrderController::class, 'searchByUser']);
+
+    // * Mindee API
+    Route::post('/parse-file', [MindeeController::class, 'parseFile']);
 });
 
 
