@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99acc3006c04f0a6fac556a0ecbd7860",
+    "content-hash": "3742ba3d6cbf45c91b551c49de942364",
     "packages": [
         {
             "name": "brick/math",
@@ -1967,6 +1967,52 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
+        },
+        {
+            "name": "mindee/mindee",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mindee/mindee-api-php.git",
+                "reference": "253b1b49c383b6269a51119485359c411d4b410a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mindee/mindee-api-php/zipball/253b1b49c383b6269a51119485359c411d4b410a",
+                "reference": "253b1b49c383b6269a51119485359c411d4b410a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-fileinfo": "*",
+                "ext-json": "*",
+                "php": ">=7.4",
+                "symfony/console": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.38",
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "bin": [
+                "bin/mindee"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mindee\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Mindee Client Library for PHP",
+            "support": {
+                "issues": "https://github.com/mindee/mindee-api-php/issues",
+                "source": "https://github.com/mindee/mindee-api-php/tree/v1.7.0"
+            },
+            "time": "2024-05-28T14:16:41+00:00"
         },
         {
             "name": "monolog/monolog",
