@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Stripe\StripeClient;
 use Stripe\PaymentIntent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Stripe\Stripe as StripeGateway;
 use Throwable;
+
 
 class StripeController extends Controller
 {
@@ -15,8 +17,9 @@ class StripeController extends Controller
         StripeGateway::setApiKey(env('STRIPE_PV_KEY'));
 
         try {
+            $order = Order::find($request->order_id);
             $paymentIntent = PaymentIntent::create([
-                'amount' => $request->amount * 100, // Multiply as & when required
+                'amount' => $order->order_price * 100, // Multiply as & when required
                 'currency' => $request->currency,
                 'automatic_payment_methods' => [
                     'enabled' => true,
