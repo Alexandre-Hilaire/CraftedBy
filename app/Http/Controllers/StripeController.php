@@ -19,14 +19,13 @@ class StripeController extends Controller
         try {
             $order = Order::find($request->order_id);
             $paymentIntent = PaymentIntent::create([
-                'amount' => $order->order_price * 100, // Multiply as & when required
+                'amount' => $order->order_price * 100, // Multiply as & when required, stripe need the price in cents
                 'currency' => $request->currency,
                 'automatic_payment_methods' => [
                     'enabled' => true,
                 ],
             ]);
 
-            // Save the $paymentIntent->id to identify this payment later
         } catch (Throwable $e) {
             report($e);
             return false;
