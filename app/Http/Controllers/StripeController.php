@@ -30,9 +30,23 @@ class StripeController extends Controller
         }
 
         return [
-            'token' => (string) Str::uuid(),
+            'token' => $paymentIntent->id,
             'client_secret' => $paymentIntent->client_secret
         ];
     }
-    
+    public function completePayment(Request $request){
+        $stripe = new StripeClient(env('STRIPE_PV_KEY'));
+
+        $paymentDetail = $stripe->paymentIntents->retrieve($request->token);
+
+        if($paymentDetail->status != 'succeeded'){
+            return [
+                'message' => (String) "erreur Stripe"
+            ];
+        }
+    }
+
+    public function failPayment(Request $request){
+
+    }
 }
