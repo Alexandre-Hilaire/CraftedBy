@@ -34,4 +34,5 @@ class StripeController extends Controller
             'client_secret' => $paymentIntent->client_secret
         ];
     }
+    
 }
