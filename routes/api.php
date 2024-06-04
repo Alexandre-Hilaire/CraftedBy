@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MindeeController;
 use App\Http\Controllers\OrderController;
@@ -71,6 +72,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('payment/initiate', [StripeController::class, 'initiatePayment']);
     Route::post('payment/complete', [StripeController::class, 'completePayment']);
     Route::post('payment/failure', [StripeController::class, 'failPayment']);
+
+    // * Invoices
+    Route::post('invoice', [InvoicesController::class, 'createInvoice']);
 });
 
 
