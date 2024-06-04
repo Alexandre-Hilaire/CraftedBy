@@ -14,6 +14,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MindeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,22 +66,27 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // * Mindee API
     Route::post('/parse-file', [MindeeController::class, 'parseFile']);
+
+    // * Stripe
+    Route::post('payment/initiate', [StripeController::class, 'initiatePayment']);
+    Route::post('payment/complete', [StripeController::class, 'completePayment']);
+    Route::post('payment/failure', [StripeController::class, 'failPayment']);
 });
 
 
-    Route::get('/products/search/{categoryId}', [ProductController::class, 'searchByCatergories']);
+Route::get('/products/search/{categoryId}', [ProductController::class, 'searchByCatergories']);
 
-    Route::apiResource('crafters', CrafterController::class)->only(["index", "show"]);
+Route::apiResource('crafters', CrafterController::class)->only(["index", "show"]);
 
-    Route::apiResource('images', ImageController::class)->only(["index", "show"]);
+Route::apiResource('images', ImageController::class)->only(["index", "show"]);
 
-    Route::apiResource('products', ProductController::class)->only(["index", "show", "searchByCatergories"]);
+Route::apiResource('products', ProductController::class)->only(["index", "show", "searchByCatergories"]);
 
-    Route::apiResource('categories', CategoryController::class)->only(["index", "show"]);
+Route::apiResource('categories', CategoryController::class)->only(["index", "show"]);
 
-    Route::apiResource('materials', MaterialController::class)->only(["index", "show"]);
+Route::apiResource('materials', MaterialController::class)->only(["index", "show"]);
 
-    Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);
+Route::apiResource('pmodels', PmodelController::class)->only(["index", "show"]);
 
-    // * AdressesAPI
-    Route::post('/searchAdress', [AdresseApi::class, 'searchAdress']);
+// * AdressesAPI
+Route::post('/searchAdress', [AdresseApi::class, 'searchAdress']);
