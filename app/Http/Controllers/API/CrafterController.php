@@ -16,7 +16,7 @@ class CrafterController extends Controller
      */
     public function index()
     {
-        return Crafter::all();
+        return Crafter::all()->load('images');
     }
 
     /**
@@ -34,14 +34,12 @@ class CrafterController extends Controller
             'location'=>$request->validated()['location'],
         ]);
 
-        if ($request->has('image_ids')){
-            $imagesIds = $request->validated()['image_ids'];
-            foreach ($imagesIds as $imageId){
-                $image = Image::find($imageId);
-                if ($image){
-                    $crafter->images()->save($image);
-                }
-            }
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $imageName = basename($imagePath);
+            $image = new Image();
+            $image->path = $imagePath;
+            $crafter->images()->save($image);
         }
 
         return $crafter->load('users', 'images');
