@@ -73,14 +73,13 @@ class ProductController extends Controller
             }
             $product->pmodel()->associate($pModel->id);
         }
-        if ($request->has('image_ids')) {
-            $imageIds = $request->validated()['image_ids'];
-            foreach ($imageIds as $imageId) {
-                $image = Image::find($imageId);
-                if ($image) {
-                    $product->images()->save($image);
-                }
-            }
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $imageName = basename($imagePath);
+            $image = new Image();
+            $image->path = $imagePath;
+            $product->images()->save($image);
         }
 
         return $product->load(['categories', 'materials', 'pmodel', 'user','images']);
