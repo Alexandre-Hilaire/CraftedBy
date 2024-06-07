@@ -24,7 +24,8 @@ class StoreImageRequest extends FormRequest
         return [
             'path'=> 'required|max:255',
             'imagable_type'=> 'required',
-            'imagable_id'=> 'required'
+            'imagable_id'=> 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }
