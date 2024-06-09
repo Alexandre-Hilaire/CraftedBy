@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -27,6 +28,16 @@ class OrdersTest extends TestCase
 
         $response->assertStatus(200);
     
+    }
+
+    public function testGetOneOrder(): void {
+
+        $order = Order::factory()->create();
+
+        $response = $this->get('/orders/' . $order->id);
+
+        $response->assertStatus(200);
+
     }
 
     protected function tearDown(): void {
