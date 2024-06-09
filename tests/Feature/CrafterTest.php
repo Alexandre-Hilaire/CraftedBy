@@ -38,6 +38,25 @@ class CrafterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testCreateACrafter(): void {
+        $faker = Faker::create();
+
+        $crafterData = [
+            'user_id' => $this->admin->id,
+            'crafter_name' => $faker->firstName,
+            'information' => $faker->realText($maxNbChar=500),
+            'story' => $faker->realText($maxNbChar=500),
+            'crafting_process' => $faker->realText($maxNbChar=500),
+            'material_preference' => $faker->realText($maxNbChar=255),
+            'location' => $faker->realText($maxNbChar=255),
+            'image_ids' => []
+        ];
+
+        $response = $this->post('/crafters', $crafterData);
+
+        $response->assertStatus(201);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
