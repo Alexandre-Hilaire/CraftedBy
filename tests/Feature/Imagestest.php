@@ -58,6 +58,41 @@ class ImagesTest extends TestCase
         $response = $this->post('/images', $imageData);
 
         $response->assertStatus(201);
+
+    }
+
+    public function testUpdateImage(): void {
+
+        $faker = Faker::create();
+
+        $pmodel = Pmodel::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $pmodel->id]);
+        $image = Image::factory()->create(['imagable_type'=> 'product', 'imagable_id'=> $product->id]);
+
+        $newPmodel = Pmodel::factory()->create();
+        $newProduct = Product::factory()->create(['pmodel_id' => $newPmodel->id]);
+
+        $imageData = [
+            'path' => $faker->filePath,
+            'imagable_type'=> 'product',
+            'imagable_id'=> $newProduct->id,
+        ];
+
+        $response = $this->put('/images/' . $image->id, $imageData);
+
+        $response->assertStatus(200);
+
+    }
+
+    public function testDeleteImage(): void {
+
+        $pmodel = Pmodel::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $pmodel->id]);
+        $image = Image::factory()->create(['imagable_type'=> 'product', 'imagable_id'=> $product->id]);
+
+        $response = $this->delete('/images/' . $image->id);
+
+        $response->assertStatus(200);
         
     }
 
