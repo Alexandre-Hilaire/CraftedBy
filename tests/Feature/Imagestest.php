@@ -42,6 +42,25 @@ class ImagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testCreateImage(): void {
+
+        $faker = Faker::create();
+
+        $pmodel = Pmodel::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $pmodel->id]);
+
+        $imageData = [
+            'path' => $faker->filePath,
+            'imagable_type'=> 'product',
+            'imagable_id'=> $product->id,
+        ];
+
+        $response = $this->post('/images', $imageData);
+
+        $response->assertStatus(201);
+        
+    }
+
 protected function tearDown(): void {
         parent::tearDown();
     }    
