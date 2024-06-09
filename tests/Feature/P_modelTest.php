@@ -53,6 +53,21 @@ class P_modelTest extends TestCase
 
     }
 
+    public function testUpdatePmodel(): void {
+
+        $faker = Faker::create();
+        $p_model = Pmodel::factory()->create();
+
+        $p_modelData = [
+            'pmodel_name' => $faker->name
+        ];
+
+        $response = $this->put('/pmodels/' . $p_model->id, $p_modelData);
+
+        $response->assertStatus(200);
+
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
