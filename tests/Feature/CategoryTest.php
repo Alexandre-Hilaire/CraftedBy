@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -21,6 +22,15 @@ class CategoryTest extends TestCase
 
     public function testGetallCategories(): void {
         $response = $this->get('/categories');
+
+        $response->assertStatus(200);
+    }
+    
+    public function testGetOneCategory(): void {
+
+        $category = Category::factory()->create();
+
+        $response = $this->get('/categories/'.$category->id);
 
         $response->assertStatus(200);
     }
