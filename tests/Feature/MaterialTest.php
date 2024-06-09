@@ -48,6 +48,21 @@ class MaterialTest extends TestCase
         $response->assertStatus(201);
     }
 
+    public function testUpdateMaterial(): void {
+        $faker = Faker::create();
+
+        $material = Material::factory()->create();
+
+        $materialData = [
+            'material_name' => $faker->name
+        ];
+
+        $response = $this->put('/materials/' . $material->id, $materialData);
+
+        $response->assertStatus(200);
+
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
