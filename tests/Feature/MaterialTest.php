@@ -63,6 +63,15 @@ class MaterialTest extends TestCase
 
     }
 
+    public function testDeleteMaterial(): void {
+        
+        $material = Material::factory()->create();
+
+        $response = $this->delete('/materials/' . $material->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
