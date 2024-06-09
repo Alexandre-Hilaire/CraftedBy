@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Order;
+use App\Models\Pmodel;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -37,6 +39,26 @@ class OrdersTest extends TestCase
         $response = $this->get('/orders/' . $order->id);
 
         $response->assertStatus(200);
+
+    }
+
+    public function testCreateOrder(): void {
+
+        $faker = Faker::create();
+
+        $pmodel = Pmodel::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $pmodel->id]);
+
+        $orderData = [
+            'user_id' => $this->admin->id,
+            'delivery_address' => $faker->address,
+            'facturation_address' => $faker->address,
+            'products' => [$product],
+        ];
+
+        $response = $this->post('/orders/', $orderData);
+
+        $response->assertStatus(201);
 
     }
 
