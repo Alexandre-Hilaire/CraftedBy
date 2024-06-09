@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Crafter;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Faker\Factory as Faker; 
 
 class CrafterTest extends TestCase
 {
@@ -23,6 +25,15 @@ class CrafterTest extends TestCase
     public function testGetAllCrafters(): void {
         
         $response = $this->get('/crafters');
+
+        $response->assertStatus(200);
+    }
+
+    public function testGetOneCrafter(): void {
+        
+        $crafter = Crafter::factory()->create();
+
+        $response = $this->get('/crafters/' . $crafter->id);
 
         $response->assertStatus(200);
     }
