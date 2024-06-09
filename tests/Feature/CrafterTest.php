@@ -78,6 +78,14 @@ class CrafterTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testDeleteCrafter() : void {
+        $crafter = Crafter::factory()->create();
+
+        $response = $this->delete('/crafters/' . $crafter->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
