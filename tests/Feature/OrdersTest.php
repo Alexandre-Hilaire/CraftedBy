@@ -85,6 +85,15 @@ class OrdersTest extends TestCase
 
     }
 
+    public function testDeleteOrder(): void {
+
+        $order = Order::factory()->create();
+
+        $response = $this->delete('/orders/' . $order->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
