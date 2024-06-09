@@ -62,6 +62,29 @@ class OrdersTest extends TestCase
 
     }
 
+    public function testUpdateOrder() : void {
+
+        $faker = Faker::create();
+
+        $order = Order::factory()->create();
+
+        $pmodel = Pmodel::factory()->create();
+
+        $product = Product::factory()->create(['pmodel_id' => $pmodel->id]);
+
+        $orderData = [
+            'user_id' => $this->admin->id,
+            'delivery_address' => $faker->address,
+            'facturation_address' => $faker->address,
+            'products' => [$product],
+        ];
+
+        $response = $this->put('/orders/' . $order->id, $orderData);
+
+        $response->assertStatus(200);
+
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
