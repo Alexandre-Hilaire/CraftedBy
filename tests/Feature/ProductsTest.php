@@ -32,6 +32,16 @@ class ProductsTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGetOneProduct(): void {
+        
+        $p_model = Pmodel::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $p_model->id]);
+
+        $response = $this->get('/products/' . $product->id);
+
+        $response->assertStatus(200);
+    }
+
     public function testCreateProduct(): void {
         $faker = Faker::create();
 
