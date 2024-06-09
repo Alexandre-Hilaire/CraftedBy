@@ -68,6 +68,16 @@ class P_modelTest extends TestCase
 
     }
 
+    public function testDeletePmodel() : void {
+
+        $p_model = Pmodel::factory()->create();
+
+        $response = $this->delete('/pmodels/' . $p_model->id);
+
+        $response->assertStatus(200);
+
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
