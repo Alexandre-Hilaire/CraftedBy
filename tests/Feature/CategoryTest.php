@@ -61,6 +61,14 @@ class CategoryTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testDeleteCategory(): void  {
+        $category = Category::factory()->create();
+
+        $response = $this->delete('/categories/' . $category->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
