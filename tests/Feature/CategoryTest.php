@@ -48,6 +48,19 @@ class CategoryTest extends TestCase
         $response->assertStatus(201);
     }
 
+    public function testUpdateCategory(): void {
+        $faker = Faker::create();
+        $category = Category::factory()->create();
+
+        $categoryData = [
+            'category_name' => $faker->address()
+        ];
+
+        $response = $this->put('/categories/'.$category->id, $categoryData);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
