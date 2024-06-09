@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Pmodel;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,12 +21,22 @@ class P_modelTest extends TestCase
         $this->actingAs($this->admin);
     }
 
-    public function testgetAllP_models(): void {
+    public function testGetAllP_models(): void {
 
         $response = $this->get('/pmodels');
 
         $response->assertStatus(200);
     
+    }
+
+    public function testGetOneP_model() : void {
+
+        $p_model = Pmodel::factory()->create();
+
+        $response = $this->get('/pmodels/' . $p_model->id);
+
+        $response->assertStatus(200);
+
     }
 
     protected function tearDown(): void {
