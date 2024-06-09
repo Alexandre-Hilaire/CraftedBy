@@ -38,6 +38,16 @@ class AddressesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGetUserAddresses(): void {
+
+        $address = Address::factory(10)->create(['user_id' => $this->admin->id]);
+
+        $response = $this->get('/addresses/search/' . $this->admin->id);
+
+        $response->assertStatus(200);
+
+    }
+
     public function testCreateAdress(): void {
         $faker = Faker::create();
 
