@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Material;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -23,6 +24,14 @@ class MaterialTest extends TestCase
     public function testGetAllMaterials(): void {
 
         $response = $this->get('/materials');
+
+        $response->assertStatus(200);
+    }
+
+    public function testGetOneMaterial(): void {
+        $material = Material::factory()->create();
+
+        $response = $this->get('/materials/' . $material->id);
 
         $response->assertStatus(200);
     }
