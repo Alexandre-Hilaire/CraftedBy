@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Faker\Factory as Faker;
 
 class CategoryTest extends TestCase
 {
@@ -16,7 +17,7 @@ class CategoryTest extends TestCase
     protected function setUp(): void {
         parent::setUp();
         $this->artisan('migrate');
-        $this->admin = User::factory()->create(['role' => '0']);
+        $this->admin = User::factory()->create(['role' => 0]);
         $this->actingAs($this->admin);
     }
 
@@ -33,6 +34,18 @@ class CategoryTest extends TestCase
         $response = $this->get('/categories/'.$category->id);
 
         $response->assertStatus(200);
+    }
+
+    public function testCreateCategory(): void {
+        $faker = Faker::create();
+
+        $categoryData = [
+            'category_name' => $faker->address()
+        ];
+
+        $response = $this->post('/categories', $categoryData);
+
+        $response->assertStatus(201);
     }
 
     protected function tearDown(): void {

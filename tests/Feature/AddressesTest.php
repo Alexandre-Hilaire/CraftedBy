@@ -20,7 +20,7 @@ class AddressesTest extends TestCase
     protected function setUp(): void {
         parent::setUp();
         $this->artisan('migrate');
-        $this->admin = User::factory()->create(['role' => '0']);
+        $this->admin = User::factory()->create(['role' => 0]);
         $this->actingAs($this->admin);
     }
 
