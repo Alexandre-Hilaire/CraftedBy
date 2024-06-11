@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Pmodel;
 use App\Models\Product;
 use App\Models\User;
@@ -98,6 +99,19 @@ class ProductsTest extends TestCase
         $response = $this->delete('/products/'.$product->id);
 
         $response->assertStatus(200);
+    }
+
+    public function testGetProductsByCategories(): void {
+
+        $p_model = Pmodel::factory()->create();
+        $category = Category::factory()->create();
+        $product = Product::factory()->create(['pmodel_id' => $p_model->id]);
+
+        $response = $this->get('/products/search/'.$category->id , ['categories_ids' => $category->id]);
+
+        $response->assertStatus(200);
+
+
     }
 
     protected function tearDown(): void
