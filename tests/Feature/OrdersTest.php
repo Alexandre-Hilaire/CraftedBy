@@ -94,6 +94,15 @@ class OrdersTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGetOrdersByUser(): void {
+
+        $order = Order::factory()->create(['user_id'=>$this->admin->id]);
+
+        $response = $this->get('/orders/search/' . $this->admin->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void {
         parent::tearDown();
     }
