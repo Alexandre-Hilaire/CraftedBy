@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Category;
 use App\Models\Image;
+use App\Models\Material;
 use App\Models\Pmodel;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -21,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Product::all()->load('images');
     }
 
     /**
@@ -44,9 +46,22 @@ class ProductController extends Controller
             'is_active' => $request->validated()['is_active'],
         ]);
 
-        $product->categories()->attach($request->validated()['categories_ids']);
+        $categories = $request->validated()["categories_names"];
+        if (!empty($categories)){
+            foreach ($categories as $categoryName){
+                $category = Category::firstOrCreate(['category_name' => $categoryName]);
+                $product->categories()->attach($category->id);
+            }
+        }
 
-        $product->materials()->attach($request->validated()['materials_ids']);
+        $materials = $request->validated()["materials_names"];
+        if (!empty($materials)){
+            foreach ($materials as $materialName){
+            $material = Material::firstOrCreate(['material_name' => $materialName]);
+            $product->materials()->attach($material->id);
+                $product->materials()->attach($material->id);
+            }
+        }
 
         $pmodelName = $request->validated()['pmodel_name'];
         if (!empty($pmodelName)) {
@@ -58,14 +73,13 @@ class ProductController extends Controller
             }
             $product->pmodel()->associate($pModel->id);
         }
-        if ($request->has('image_ids')) {
-            $imageIds = $request->validated()['image_ids'];
-            foreach ($imageIds as $imageId) {
-                $image = Image::find($imageId);
-                if ($image) {
-                    $product->images()->save($image);
-                }
-            }
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $imageName = basename($imagePath);
+            $image = new Image();
+            $image->path = $imagePath;
+            $product->images()->save($image);
         }
 
         return $product->load(['categories', 'materials', 'pmodel', 'user','images']);

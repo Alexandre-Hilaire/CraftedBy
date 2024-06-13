@@ -22,7 +22,17 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $image = Image::create($request->validated());
+        $validatedData = $request->validated();
+        unset($validatedData['image']);
+        $image = Image::create($validatedData);
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('img', 'public');
+            $imageName = basename($imagePath);
+            $image = new Image();
+            $image->file_name = $imageName;
+            $image->file_size = 1;
+        }
         return $image;
     }
 
