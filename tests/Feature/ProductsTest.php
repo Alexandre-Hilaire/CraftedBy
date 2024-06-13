@@ -56,8 +56,8 @@ class ProductsTest extends TestCase
             "color" => $faker->colorName,
             "customizable" => rand(0,1),
             "is_active" => fake()->boolean(),
-            "categories_ids" => [],
-            "materials_ids" => [],
+            "categories_names" => [],
+            "materials_names" => [],
             "image_ids" => []
         ];
 
@@ -82,8 +82,8 @@ class ProductsTest extends TestCase
             "color" => $faker->colorName,
             "customizable" => rand(0,1),
             "is_active" => fake()->boolean(),
-            "categories_ids" => [],
-            "materials_ids" => [],
+            "categories_names" => [],
+            "materials_names" => [],
             "image_ids" => []
         ];
 

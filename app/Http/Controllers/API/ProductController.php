@@ -116,8 +116,8 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->materials()->detach();
 
-        $product->categories()->attach($request->validated()['categories_ids']);
-        $product->materials()->attach($request->validated()['materials_ids']);
+        $product->categories()->attach($request->validated()['categories_names']);
+        $product->materials()->attach($request->validated()['materials_names']);
 
         $pmodelName = $request->validated()['pmodel_name'];
         if (!empty($pmodelName)) {
