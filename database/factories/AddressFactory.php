@@ -18,6 +18,7 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id'=>User::factory(),
             'address_name' => "adresse_test",
             'address_type' => rand(0,1),
             'address_firstname' => fake()->firstName(),
