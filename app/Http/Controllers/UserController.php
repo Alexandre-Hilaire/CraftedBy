@@ -66,4 +66,21 @@ class UserController extends Controller
             $user->delete($user);
         }
     }
+
+    public function getUserRole(User $user){
+        
+        $userRole = '';
+        switch(true) {
+            case $user->isAdmin():
+                $userRole = 'admin';
+                break;
+            case $user->isCrafter():
+                $userRole = 'crafter';
+                break;
+            case $user->isUser():
+                $userRole = 'user';
+                break;
+        }
+        return response()->json(['role' => $userRole]);
+    }
 }
