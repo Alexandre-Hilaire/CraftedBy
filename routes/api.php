@@ -49,6 +49,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('users', UserController::class);
 
+    Route::get('/users/role/{user}', [UserController::class, 'getUserRole']);
+
     Route::apiResource('crafters', CrafterController::class);
 
     Route::apiResource('images', ImageController::class);
