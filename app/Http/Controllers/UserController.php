@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Crafter;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -82,5 +83,10 @@ class UserController extends Controller
                 break;
         }
         return response()->json(['role' => $userRole]);
+    }
+
+    public function getUserCrafters(User $user) {
+        $crafterPages = Crafter::where('user_id', $user->id)->get();
+        return response()->json($crafterPages);
     }
 }
