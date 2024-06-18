@@ -82,11 +82,11 @@ class UserController extends Controller
                 $userRole = 'user';
                 break;
         }
-        return response()->json(['role' => $userRole]);
+        return response()->json($userRole);
     }
 
     public function getUserCrafters(User $user) {
-        $crafterPages = Crafter::where('user_id', $user->id)->get();
+        $crafterPages = Crafter::where('user_id', $user->id)->get(['id', 'crafter_name']); // * get only ids and names
         return response()->json($crafterPages);
     }
 }
