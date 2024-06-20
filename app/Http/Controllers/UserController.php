@@ -71,6 +71,7 @@ class UserController extends Controller
     public function getUserRole(User $user){
         
         $userRole = '';
+        // * Answer to the user model's role functions
         switch(true) {
             case $user->isAdmin():
                 $userRole = 'admin';
