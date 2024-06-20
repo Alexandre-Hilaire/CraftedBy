@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Crafter;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -70,6 +71,7 @@ class UserController extends Controller
     public function getUserRole(User $user){
         
         $userRole = '';
+        // * Answer to the user model's role functions
         switch(true) {
             case $user->isAdmin():
                 $userRole = 'admin';
@@ -81,6 +83,11 @@ class UserController extends Controller
                 $userRole = 'user';
                 break;
         }
-        return response()->json(['role' => $userRole]);
+        return response()->json($userRole);
+    }
+
+    public function getUserCrafters(User $user) {
+        $crafterPages = Crafter::where('user_id', $user->id)->get(['id', 'crafter_name']); // * get only ids and names
+        return response()->json($crafterPages);
     }
 }

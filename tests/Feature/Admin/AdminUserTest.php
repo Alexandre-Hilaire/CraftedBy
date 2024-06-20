@@ -75,6 +75,18 @@ class AdminUserTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_getUserRole(): void {
+        $response = $this->get('/users/role/'. $this->admin->id);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_getUserCrafters(): void {
+        $response = $this->get('/users/crafters/'. $this->admin->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
