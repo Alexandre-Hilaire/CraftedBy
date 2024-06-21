@@ -144,9 +144,16 @@ class ProductController extends Controller
     {
         $this->authorize('destroy', $product);
 
-        if ($product) {
+        if ($product && $product->orders()->count() === 0) {
             $product->delete($product);
+            return response()->json(['message' => 'Le produit à été supprimé'], 200);
         }
+        else if ($product && $product->orders()->count() > 0){
+            $product->is_active = 0;
+            $product->save();
+            return response()->json(['message' => 'Comme le produit est présent dans des commandes il à été désactivé'], 200);
+        }
+        
     }
 
     public function searchByCatergories($categoryId)
