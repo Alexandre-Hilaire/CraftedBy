@@ -28,7 +28,7 @@ class Product extends Model
     public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function oders(): BelongsToMany{
+    public function orders(): BelongsToMany{
         return $this->belongsToMany(Order::class);
     }
     public function categories(): BelongsToMany{
