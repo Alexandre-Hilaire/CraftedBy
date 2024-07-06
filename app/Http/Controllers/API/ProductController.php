@@ -116,8 +116,13 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->materials()->detach();
 
-        $product->categories()->attach($request->validated()['categories_names']);
-        $product->materials()->attach($request->validated()['materials_names']);
+        $categoriesNames = $request->validated()['categories_names'];
+        $categories = Category::whereIn('category_name', $categoriesNames)->get();
+        $product->categories()->attach($categories->pluck('id'));
+
+        $materialsNames = $request->validated()['materials_names'];
+        $materials = Material::whereIn('material_name', $materialsNames)->get();
+        $product->materials()->attach($materials->pluck('id'));
 
         $pmodelName = $request->validated()['pmodel_name'];
         if (!empty($pmodelName)) {
