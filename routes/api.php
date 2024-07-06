@@ -59,6 +59,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/users/crafters/{user}', [UserController::class, 'getUserCrafters']);
 
+    route::get('/users/products/{user}',[UserController::class, 'getUserProducts']);
+
     // * crafters
 
     Route::apiResource('crafters', CrafterController::class);

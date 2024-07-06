@@ -116,8 +116,13 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->materials()->detach();
 
-        $product->categories()->attach($request->validated()['categories_names']);
-        $product->materials()->attach($request->validated()['materials_names']);
+        $categoriesNames = $request->validated()['categories_names'];
+        $categories = Category::whereIn('category_name', $categoriesNames)->get();
+        $product->categories()->attach($categories->pluck('id'));
+
+        $materialsNames = $request->validated()['materials_names'];
+        $materials = Material::whereIn('material_name', $materialsNames)->get();
+        $product->materials()->attach($materials->pluck('id'));
 
         $pmodelName = $request->validated()['pmodel_name'];
         if (!empty($pmodelName)) {
@@ -144,9 +149,16 @@ class ProductController extends Controller
     {
         $this->authorize('destroy', $product);
 
-        if ($product) {
+        if ($product && $product->orders()->count() === 0) {
             $product->delete($product);
+            return response()->json(['message' => 'Le produit à été supprimé'], 200);
         }
+        else if ($product && $product->orders()->count() > 0){
+            $product->is_active = 0;
+            $product->save();
+            return response()->json(['message' => 'Comme le produit est présent dans des commandes il à été désactivé'], 200);
+        }
+        
     }
 
     public function searchByCatergories($categoryId)

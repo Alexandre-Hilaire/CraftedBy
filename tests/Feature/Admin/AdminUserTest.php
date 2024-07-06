@@ -87,6 +87,12 @@ class AdminUserTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testGetUserProducts(): void {
+        $response = $this->get('/users/products/'. $this->admin->id);
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
